@@ -6,6 +6,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    serverActions: true,
+  },
   // Configura las imágenes externas que serán optimizadas por Next.js
   images: {
     unoptimized: true,
