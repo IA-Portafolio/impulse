@@ -129,9 +129,7 @@ const FoamSection = () => {
         </p>
 
         {/* Contenedor del video - Altura reducida en móviles */}
-        <div className="relative w-full max-w-6xl h-[200px] sm:h-[300px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden 
-                      mb-6 sm:mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-500
-                      shadow-[0_0_30px_rgba(255,0,84,0.3)]">
+        <div className="relative w-full max-w-6xl h-[200px] sm:h-[300px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 md:mb-12 transform hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_rgba(255,0,84,0.3)]">
           <video
             ref={videoRef}
             autoPlay

@@ -4,39 +4,47 @@
 import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Check, Package, ArrowRight, Loader2 } from "lucide-react"
+import { Check, ArrowRight, Loader2, Package } from "lucide-react"
 import Link from "next/link"
 
-export default function OrderConfirmationPage({ params }: { params: { id: string } }) {
+export default function OrderConfirmationPage() {
     const [orderData, setOrderData] = useState<any>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
+    const [orderId, setOrderId] = useState<string>('')
 
     useEffect(() => {
-        const fetchOrderData = async () => {
-            try {
-                setLoading(true)
-                // Make a request to the API to get order details
-                const response = await fetch(`/api/wear/orders?id=${params.id}`)
+        // Extraer el ID de la URL
+        if (typeof window !== 'undefined') {
+            const pathSegments = window.location.pathname.split('/');
+            const id = pathSegments[pathSegments.length - 1];
+            setOrderId(id);
+            
+            const fetchOrderData = async () => {
+                try {
+                    setLoading(true)
+                    // Make a request to the API to get order details
+                    const response = await fetch(`/api/wear/orders?id=${id}`)
 
-                if (!response.ok) {
-                    throw new Error('Could not retrieve order information')
+                    if (!response.ok) {
+                        throw new Error('Could not retrieve order information')
+                    }
+
+                    const data = await response.json()
+                    setOrderData(data)
+                } catch (error: any) {
+                    console.error('Error loading order details:', error)
+                    setError(error.message || 'Error loading order details')
+                } finally {
+                    setLoading(false)
                 }
+            }
 
-                const data = await response.json()
-                setOrderData(data)
-            } catch (error: any) {
-                console.error('Error loading order details:', error)
-                setError(error.message || 'Error loading order details')
-            } finally {
-                setLoading(false)
+            if (id) {
+                fetchOrderData()
             }
         }
-
-        if (params.id) {
-            fetchOrderData()
-        }
-    }, [params.id])
+    }, [])
 
     if (loading) {
         return (
@@ -85,7 +93,7 @@ export default function OrderConfirmationPage({ params }: { params: { id: string
                     <CardContent className="space-y-4 sm:space-y-6 pt-4">
                         <div className="bg-[#fefefe]/5 p-3 sm:p-4 rounded-lg">
                             <p className="text-[#fefefe]/70 text-xs sm:text-sm">Order Number</p>
-                            <p className="text-[#fefefe] font-medium text-base sm:text-lg">{params.id}</p>
+                            <p className="text-[#fefefe] font-medium text-base sm:text-lg">{orderId}</p>
                         </div>
 
                         <div className="flex items-center bg-[#fefefe]/5 p-3 sm:p-4 rounded-lg">

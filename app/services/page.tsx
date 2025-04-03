@@ -28,13 +28,7 @@ export default function ServicesPage() {
           {[...Array(10)].map((_, i) => (
             <div
               key={i}
-              className="absolute h-[1px] w-[200%] bg-gradient-to-r from-transparent via-[#ff0054] to-transparent transform -translate-x-full animate-slide"
-              style={{
-                top: `${i * 20}%`,
-                animationDelay: `${i * 0.5}s`,
-                transform: `rotate(${35}deg) translateX(-50%)`
-              }}
-            />
+              className="absolute h-[1px] w-[200%] bg-gradient-to-r from-transparent via-[#ff0054] to-transparent transform -translate-x-full animate-slide" style={{top: `${i * 20}%`, animationDelay: `${i * 0.5}s`, transform: `rotate(${35}deg) translateX(-50%)`}}/>
           ))}
         </div>
 
@@ -121,12 +115,7 @@ export default function ServicesPage() {
             
             <Button
               onClick={() => setSelectedPontoon(null)}
-              className="absolute top-4 right-4 bg-[#060404]/80 hover:bg-[#060404] 
-                      border border-[#ff0054] text-[#fefefe] rounded-full p-2
-                      transition-all duration-300"
-              size="icon"
-              variant="outline"
-            >
+              className="absolute top-4 right-4 bg-[#060404]/80 hover:bg-[#060404] border border-[#ff0054] text-[#fefefe] rounded-full p-2transition-all duration-300" size="icon" variant="outline">
               <X className="h-4 w-4" />
             </Button>
           </div>
@@ -217,16 +206,9 @@ export default function ServicesPage() {
 
     {/* Botón antes de Sunset Cruise */}
     <div className="flex justify-center pt-4 sm:pt-6 md:pt-8 pb-4 sm:pb-6 md:pb-8">
-      <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] 
-                    transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)] w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px]">
+      <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)] w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px]">
         <Button 
-          className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-xl sm:text-2xl md:text-3xl px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6
-                   transition-transform duration-300 font-bebas relative z-10
-                   before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] 
-                   before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 
-                   before:transition-opacity before:-z-10
-                   flex items-center justify-center gap-2 sm:gap-3
-                   hover:scale-[1.02]"
+          className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-xl sm:text-2xl md:text-3xl px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3 hover:scale-[1.02]"
           asChild
         >
           <Link href="/barco">
@@ -278,9 +260,7 @@ export default function ServicesPage() {
         {/* Botón GMC */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
           <Button 
-            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10
-                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10
-                     flex items-center justify-center gap-2 sm:gap-3"
+            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
             <Link href="/gmc">
@@ -293,9 +273,7 @@ export default function ServicesPage() {
         {/* Botón Suburban */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
           <Button 
-            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10
-                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10
-                     flex items-center justify-center gap-2 sm:gap-3"
+            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
             <Link href="/suburban">
@@ -308,9 +286,7 @@ export default function ServicesPage() {
         {/* Botón BMW */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
           <Button 
-            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10
-                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10
-                     flex items-center justify-center gap-2 sm:gap-3"
+            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
             <Link href="/bmw">
@@ -330,18 +306,14 @@ export default function ServicesPage() {
       {/* Nuevos botones de precios con fondo blanco y texto negro */}
       <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-6 pt-4 sm:pt-6">
         <Button 
-          className="bg-[#fefefe] border-3 border-[#ff0054] text-[#060404] hover:bg-[#fefefe]/90
-                   text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md
-                   min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
+          className="bg-[#fefefe] border-3 border-[#ff0054] text-[#060404] hover:bg-[#fefefe]/90 text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
           disabled
         >
           Price per hour $75
         </Button>
         
         <Button 
-          className="bg-[#fefefe] border-3 border-[#fbe40b] text-[#060404] hover:bg-[#fefefe]/90
-                   text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md
-                   min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
+          className="bg-[#fefefe] border-3 border-[#fbe40b] text-[#060404] hover:bg-[#fefefe]/90 text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
           disabled
         >
           Trip to the airport $149
@@ -411,12 +383,7 @@ export default function ServicesPage() {
 
       <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
         <Button 
-          className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8
-                   transition-transform duration-300 font-bebas relative z-10
-                   before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] 
-                   before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 
-                   before:transition-opacity before:-z-10
-                   flex items-center justify-center gap-2 sm:gap-3"
+          className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
           asChild
         >
           <Link href="/bounce">
@@ -458,12 +425,7 @@ export default function ServicesPage() {
           </div>
           <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
             <Button 
-              className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6
-                       transition-transform duration-300 font-bebas relative z-10
-                       before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] 
-                       before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 
-                       before:transition-opacity before:-z-10
-                       flex items-center justify-center gap-2 sm:gap-3"
+              className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
               asChild
             >
               <Link href="/foamdia">
@@ -492,12 +454,7 @@ export default function ServicesPage() {
           </div>
           <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
             <Button 
-              className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6
-                       transition-transform duration-300 font-bebas relative z-10
-                       before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] 
-                       before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 
-                       before:transition-opacity before:-z-10
-                       flex items-center justify-center gap-2 sm:gap-3"
+              className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
               asChild
             >
               <Link href="/foamnoche">
@@ -525,8 +482,7 @@ export default function ServicesPage() {
     </div>
     <div className="flex justify-center">
       <div className="w-[220px] relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] shadow-[0_0_15px_rgba(255,0,84,0.5)]">
-        <div className="w-full bg-[#060404] text-[#fefefe] text-lg sm:text-xl md:text-2xl px-6 py-4 
-                      font-bebas relative z-10 flex items-center justify-center">
+        <div className="w-full bg-[#060404] text-[#fefefe] text-lg sm:text-xl md:text-2xl px-6 py-4 font-bebas relative z-10 flex items-center justify-center">
           FoamPit
         </div>
       </div>
@@ -568,12 +524,7 @@ export default function ServicesPage() {
         {/* Botón Book Now */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
           <Button 
-            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8
-                     transition-transform duration-300 font-bebas relative z-10
-                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] 
-                     before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 
-                     before:transition-opacity before:-z-10
-                     flex items-center justify-center gap-2 sm:gap-3"
+            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
             <Link href="/book-now?service=dj">

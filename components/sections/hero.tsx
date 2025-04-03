@@ -124,28 +124,10 @@ export default function Hero() {
         
         {/* Títulos - Responsive font sizes */}
         <div className="flex flex-col items-center space-y-0 sm:space-y-1 mb-4 sm:mb-6 md:mb-8">
-          <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo"
-            style={{ 
-              background: `linear-gradient(to right, #ff0054, #fbe40b)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              letterSpacing: '0.05em',
-              padding: '0 0.5rem'
-            }}
-          >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo" style={{ background: `linear-gradient(to right, #ff0054, #fbe40b)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '0.05em', padding: '0 0.5rem' }}>
             {videos[currentVideo].titleLine1}
           </h2>
-          <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo"
-            style={{ 
-              background: `linear-gradient(to right, #ff0054, #fbe40b)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              letterSpacing: '0.05em',
-              padding: '0 0.5rem'
-            }}
-          >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo" style={{ background: `linear-gradient(to right, #ff0054, #fbe40b)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '0.05em', padding: '0 0.5rem' }}>
             {videos[currentVideo].titleLine2}
           </h2>
         </div>

@@ -1426,6 +1426,7 @@ export default function BookNowPage() {
           </div>
         )}
 
+
         {/* Final Confirmation */}
         {booking.paymentComplete && (
           <div className="max-w-2xl mx-auto text-center">

@@ -7,11 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, Calendar, Phone, Mail, MapPin, Loader2 } from "lucide-react"
 import Link from "next/link"
 
-export default function BookingConfirmationPage({ params }: { params: { id: string } }) {
+export default function BookingConfirmationPage() {
     const [bookingData, setBookingData] = useState<any>(null)
     const [loading, setLoading] = useState(true)
+    const [bookingId, setBookingId] = useState<string>('')
 
     useEffect(() => {
+        // Obtener el ID de la URL
+        if (typeof window !== 'undefined') {
+            const pathSegments = window.location.pathname.split('/');
+            const id = pathSegments[pathSegments.length - 1];
+            setBookingId(id);
+        }
+
         // Try to retrieve booking data from localStorage
         const savedBooking = localStorage.getItem('lastBooking')
         if (savedBooking) {
@@ -19,7 +27,7 @@ export default function BookingConfirmationPage({ params }: { params: { id: stri
         } else {
             // If there's no data in localStorage, use simulated data
             setBookingData({
-                id: params.id,
+                id: bookingId,
                 serviceName: "Booked Service",
                 optionName: "Service Option",
                 amount: 45000,
@@ -34,7 +42,7 @@ export default function BookingConfirmationPage({ params }: { params: { id: stri
             })
         }
         setLoading(false)
-    }, [params.id])
+    }, [bookingId])
 
     if (loading) {
         return (
@@ -78,7 +86,7 @@ export default function BookingConfirmationPage({ params }: { params: { id: stri
                             <div className="flex flex-col sm:flex-row justify-between items-center bg-white/5 p-3 sm:p-4 rounded-lg border border-[#ff0054]/20">
                                 <div>
                                     <p className="text-[#fefefe]/60 text-xs sm:text-sm">Booking Number</p>
-                                    <p className="text-[#fefefe] text-lg sm:text-xl font-medium">{params.id}</p>
+                                    <p className="text-[#fefefe] text-lg sm:text-xl font-medium">{bookingId}</p>
                                 </div>
                                 <div className="mt-2 sm:mt-0">
                                     <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">

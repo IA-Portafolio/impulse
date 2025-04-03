@@ -41,10 +41,7 @@ const PontoonsSection = () => {
           {/* Silverwave Pontoon */}
           <div className="relative group z-30 mx-auto w-full max-w-md lg:max-w-full">
             {/* Versión Desktop de la tarjeta de información (solo visible en hover en pantallas grandes) */}
-            <div className="hidden lg:block absolute top-[100%] left-[20%] right-[20%] w-[60%] opacity-0 group-hover:opacity-100 
-                          bg-gradient-to-r from-[#ff0054] to-[#fbe40b] p-4 rounded-xl 
-                          transition-all duration-300 shadow-xl transform translate-y-2 
-                          group-hover:translate-y-4 z-50 mt-4">
+            <div className="hidden lg:block absolute top-[100%] left-[20%] right-[20%] w-[60%] opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[#ff0054] to-[#fbe40b] p-4 rounded-xl transition-all duration-300 shadow-xl transform translate-y-2 group-hover:translate-y-4 z-50 mt-4">
               <h4 className="text-[#060404] text-lg font-bebas mb-2">SILVERWAVE</h4>
               <ul className="text-[#060404] space-y-1 text-sm">
                 <li>Capacity: Up to 12 Passengers</li>
@@ -132,10 +129,7 @@ const PontoonsSection = () => {
           {/* Qwest Pontoon */}
           <div className="relative group z-20 mx-auto w-full max-w-md lg:max-w-full">
             {/* Versión Desktop de la tarjeta de información (solo visible en hover en pantallas grandes) */}
-            <div className="hidden lg:block absolute top-[100%] left-[20%] right-[20%] w-[60%] opacity-0 group-hover:opacity-100 
-                          bg-gradient-to-r from-[#ff0054] to-[#fbe40b] p-4 rounded-xl 
-                          transition-all duration-300 shadow-xl transform translate-y-2 
-                          group-hover:translate-y-4 z-50 mt-4">
+            <div className="hidden lg:block absolute top-[100%] left-[20%] right-[20%] w-[60%] opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[#ff0054] to-[#fbe40b] p-4 rounded-xl transition-all duration-300 shadow-xl transform translate-y-2 group-hover:translate-y-4 z-50 mt-4">
               <h4 className="text-[#060404] text-lg font-bebas mb-2">QWEST</h4>
               <ul className="text-[#060404] space-y-1 text-sm">
                 <li>Capacity: Up to 13 Passengers</li>
