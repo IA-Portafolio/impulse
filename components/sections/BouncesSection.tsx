@@ -135,8 +135,7 @@ const BouncesSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 md:gap-12 items-center">
           {/* Contenido de texto - Izquierda */}
           <div className="lg:col-span-7 space-y-6 md:space-y-8">
-            <div className="bg-[#060404]/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#ff0054]/20 
-                          h-auto md:h-[500px] lg:h-[600px] flex flex-col justify-between shadow-xl shadow-[#ff0054]/10">
+            <div className="bg-[#060404]/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#ff0054]/20 h-auto md:h-[500px] lg:h-[600px] flex flex-col justify-between shadow-xl shadow-[#ff0054]/10">
               <div>
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-acumin text-[#fefefe] leading-relaxed mb-4 sm:mb-6 md:mb-8">
                   Are you ready for an unforgettable time with our Ice Pops Mega Front Bounce House?
@@ -165,10 +164,7 @@ const BouncesSection = () => {
 
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                         text-[#fefefe] font-bebas text-xl sm:text-2xl md:text-3xl px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 
-                         transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#ff0054]/50 
-                         w-fit mx-auto mt-6 sm:mt-8 md:mt-0"
+                className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-xl sm:text-2xl md:text-3xl px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#ff0054]/50 w-fit mx-auto mt-6 sm:mt-8 md:mt-0"
                 asChild
               >
                 <Link href="/bounce">Read More</Link>
@@ -194,9 +190,7 @@ const BouncesSection = () => {
 
               
               {/* Efecto de borde al hover */}
-              <div className="absolute inset-0 border-2 border-transparent 
-                           hover:border-[#ff0054] rounded-xl sm:rounded-2xl transition-colors 
-                           duration-300"></div>
+              <div className="absolute inset-0 border-2 border-transparent hover:border-[#ff0054] rounded-xl sm:rounded-2xl transition-colors duration-300"></div>
             </div>
           </div>
         </div>

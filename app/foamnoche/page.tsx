@@ -94,10 +94,7 @@ export default function FoamNochePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Video Card Section */}
           <div className="mb-24">
-            <div className="relative rounded-xl overflow-hidden 
-                          border border-[#ff0054]/30 
-                          shadow-[0_0_30px_rgba(255,0,84,0.3)]
-                          bg-[#060404]/50 backdrop-blur-sm"> {/* Reducida la opacidad del fondo */}
+            <div className="jsx-f190bc1cb73f4c3a relative rounded-xl overflow-hidden border border-[#ff0054]/30 shadow-[0_0_30px_rgba(255,0,84,0.3)] bg-[#060404]/50 backdrop-blur-sm"> {/* Reducida la opacidad del fondo */}
               <div className="relative h-[600px]">
                 <video
                   className="w-full h-full object-cover brightness-110" // Aumentada la luminosidad
@@ -129,21 +126,11 @@ export default function FoamNochePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
             {/* Safety Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-[0_0_30px_rgba(255,0,84,0.3)]
-                           group-hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]">
-                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6
-                              before:absolute before:inset-0 before:rounded-full 
-                              before:shadow-[inset_0_0_20px_rgba(255,0,84,0.3)]
-                              before:opacity-0 group-hover:before:opacity-100
-                              before:transition-opacity before:duration-500">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#ff0054] to-[#fbe40b]transform transition-all duration-500 group-hover:scale-105shadow-[0_0_30px_rgba(255,0,84,0.3)]group-hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]">
+                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6before:absolute before:inset-0 before:rounded-full before:shadow-[inset_0_0_20px_rgba(255,0,84,0.3)]before:opacity-0 group-hover:before:opacity-100before:transition-opacity before:duration-500">
                   <div className="text-center space-y-4">
-                    <ShieldCheck className="w-16 h-16 text-[#ff0054] mx-auto 
-                                         group-hover:animate-pulse" />
-                    <h3 className="text-3xl font-bebas text-[#fefefe]
-                                group-hover:text-[#ff0054] transition-colors">
+                    <ShieldCheck className="w-16 h-16 text-[#ff0054] mx-auto group-hover:animate-pulse" />
+                    <h3 className="text-3xl font-bebas text-[#fefefe]group-hover:text-[#ff0054] transition-colors">
                       Night Safety
                     </h3>
                     <p className="text-[#fefefe]/80 text-lg">
@@ -157,21 +144,11 @@ export default function FoamNochePage() {
 
             {/* Clean Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#fbe40b] to-[#ff0054]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-[0_0_30px_rgba(251,228,11,0.3)]
-                           group-hover:shadow-[0_0_50px_rgba(251,228,11,0.5)]">
-                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6
-                              before:absolute before:inset-0 before:rounded-full 
-                              before:shadow-[inset_0_0_20px_rgba(251,228,11,0.3)]
-                              before:opacity-0 group-hover:before:opacity-100
-                              before:transition-opacity before:duration-500">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#fbe40b] to-[#ff0054]transform transition-all duration-500 group-hover:scale-105shadow-[0_0_30px_rgba(251,228,11,0.3)]group-hover:shadow-[0_0_50px_rgba(251,228,11,0.5)]">
+                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6before:absolute before:inset-0 before:rounded-full before:shadow-[inset_0_0_20px_rgba(251,228,11,0.3)]before:opacity-0 group-hover:before:opacity-100before:transition-opacity before:duration-500">
                   <div className="text-center space-y-4">
-                    <Sparkles className="w-16 h-16 text-[#fbe40b] mx-auto 
-                                     group-hover:animate-pulse" />
-                    <h3 className="text-3xl font-bebas text-[#fefefe]
-                                group-hover:text-[#fbe40b] transition-colors">
+                    <Sparkles className="w-16 h-16 text-[#fbe40b] mx-auto group-hover:animate-pulse" />
+                    <h3 className="text-3xl font-bebas text-[#fefefe]group-hover:text-[#fbe40b] transition-colors">
                       LED Effects
                     </h3>
                     <p className="text-[#fefefe]/80 text-lg">
@@ -185,21 +162,11 @@ export default function FoamNochePage() {
 
             {/* Duration Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-[0_0_30px_rgba(255,0,84,0.3)]
-                           group-hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]">
-                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6
-                              before:absolute before:inset-0 before:rounded-full 
-                              before:shadow-[inset_0_0_20px_rgba(255,0,84,0.3)]
-                              before:opacity-0 group-hover:before:opacity-100
-                              before:transition-opacity before:duration-500">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#ff0054] to-[#fbe40b]transform transition-all duration-500 group-hover:scale-105shadow-[0_0_30px_rgba(255,0,84,0.3)]group-hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]">
+                <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6before:absolute before:inset-0 before:rounded-full before:shadow-[inset_0_0_20px_rgba(255,0,84,0.3)]before:opacity-0 group-hover:before:opacity-100before:transition-opacity before:duration-500">
                   <div className="text-center space-y-4">
-                    <Clock className="w-16 h-16 text-[#ff0054] mx-auto 
-                                  group-hover:animate-pulse" />
-                    <h3 className="text-3xl font-bebas text-[#fefefe]
-                                group-hover:text-[#ff0054] transition-colors">
+                    <Clock className="w-16 h-16 text-[#ff0054] mx-auto group-hover:animate-pulse" />
+                    <h3 className="text-3xl font-bebas text-[#fefefe]group-hover:text-[#ff0054] transition-colors">
                       All Night Long
                     </h3>
                     <p className="text-[#fefefe]/80 text-lg">
@@ -216,11 +183,7 @@ export default function FoamNochePage() {
           <div className="text-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                       text-[#fefefe] font-bebas text-2xl px-16 py-8 
-                       transform hover:scale-105 transition-all duration-300
-                       shadow-[0_0_30px_rgba(255,0,84,0.3)]
-                       hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]"
+              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-2xl px-16 py-8 transform hover:scale-105 transition-all duration-300shadow-[0_0_30px_rgba(255,0,84,0.3)]hover:shadow-[0_0_50px_rgba(255,0,84,0.5)]"
               asChild
             >
               <Link href="/book-now?service=foam">Book Now</Link>

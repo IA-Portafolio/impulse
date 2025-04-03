@@ -27,12 +27,7 @@ export const BookingSteps: React.FC<StepProps> = ({
                             {/* Paso (círculo) */}
                             <div className="flex flex-col items-center relative">
                                 <div
-                                    className={cn(
-                                        "flex items-center justify-center w-10 h-10 rounded-full text-white font-bold transition-all duration-300",
-                                        isActive && "bg-[#ff0054] border-[#ff0054] border-4 shadow-lg ring-4 ring-[#ff0054]/30 scale-110",
-                                        isCompleted && "bg-green-500 border-green-500 border-4",
-                                        !isActive && !isCompleted && "bg-gray-300 border-gray-300 border-4"
-                                    )}
+                                    className={cn("flex items-center justify-center w-10 h-10 rounded-full text-white font-bold transition-all duration-300", isActive && "bg-[#ff0054] border-[#ff0054] border-4 shadow-lg ring-4 ring-[#ff0054]/30 scale-110", isCompleted && "bg-green-500 border-green-500 border-4", !isActive && !isCompleted && "bg-gray-300 border-gray-300 border-4")}
                                 >
                                     {isCompleted ? (
                                         <CheckCircle className="w-5 h-5" />
@@ -44,30 +39,22 @@ export const BookingSteps: React.FC<StepProps> = ({
                                 {/* Etiqueta del paso */}
                                 <div className="mt-2 text-xs md:text-sm font-medium text-center">
                                     {step === 1 && (
-                                        <span className={cn(
-                                            isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500"
-                                        )}>
+                                        <span className={cn(isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500")}>
                       Service
                     </span>
                                     )}
                                     {step === 2 && (
-                                        <span className={cn(
-                                            isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500"
-                                        )}>
+                                        <span className={cn(isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500")}>
                       Details
                     </span>
                                     )}
                                     {step === 3 && (
-                                        <span className={cn(
-                                            isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500"
-                                        )}>
+                                        <span className={cn(isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500")}>
                       Date 
                     </span>
                                     )}
                                     {step === 4 && (
-                                        <span className={cn(
-                                            isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500"
-                                        )}>
+                                        <span className={cn(isActive || isCompleted ? "text-[#ff0054]" : "text-gray-500")}>
                       Payment
                     </span>
                                     )}

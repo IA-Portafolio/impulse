@@ -138,7 +138,7 @@ export default function FoamDiaPage() {
                 Introducing our latest addition - the ultimate outdoor foam pit! 
                 A specially designed pool that creates the perfect environment for 
                 foam play. With enhanced safety features and optimal foam generation, 
-                it's the perfect centerpiece for any outdoor event. Great for summer 
+                it&#39;s the perfect centerpiece for any outdoor event. Great for summer 
                 parties, corporate events, and festivals!
               </p>
             </div>
@@ -148,10 +148,7 @@ export default function FoamDiaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
             {/* Safety Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-lg hover:shadow-[#ff0054]/50">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#ff0054] to-[#fbe40b]transform transition-all duration-500 group-hover:scale-105shadow-lg hover:shadow-[#ff0054]/50">
                 <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6">
                   <div className="text-center space-y-4">
                     <ShieldCheck className="w-16 h-16 text-[#ff0054] mx-auto" />
@@ -167,10 +164,7 @@ export default function FoamDiaPage() {
 
             {/* Clean Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#fbe40b] to-[#ff0054]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-lg hover:shadow-[#fbe40b]/50">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#fbe40b] to-[#ff0054]transform transition-all duration-500 group-hover:scale-105shadow-lg hover:shadow-[#fbe40b]/50">
                 <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6">
                   <div className="text-center space-y-4">
                     <Sparkles className="w-16 h-16 text-[#fbe40b] mx-auto" />
@@ -186,10 +180,7 @@ export default function FoamDiaPage() {
 
             {/* Duration Card */}
             <div className="group">
-              <div className="relative aspect-square rounded-full p-8
-                           bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                           transform transition-all duration-500 group-hover:scale-105
-                           shadow-lg hover:shadow-[#ff0054]/50">
+              <div className="relative aspect-square rounded-full p-8bg-gradient-to-br from-[#ff0054] to-[#fbe40b]transform transition-all duration-500 group-hover:scale-105shadow-lg hover:shadow-[#ff0054]/50">
                 <div className="absolute inset-1 rounded-full bg-[#060404] flex items-center justify-center p-6">
                   <div className="text-center space-y-4">
                     <Clock className="w-16 h-16 text-[#ff0054] mx-auto" />
@@ -208,10 +199,7 @@ export default function FoamDiaPage() {
           <div className="text-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                       text-[#fefefe] font-bebas text-2xl px-16 py-8 
-                       transform hover:scale-105 transition-all duration-300
-                       shadow-lg hover:shadow-[#ff0054]/50"
+              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-2xl px-16 py-8 transform hover:scale-105 transition-all duration-300shadow-lg hover:shadow-[#ff0054]/50"
               asChild
             >
               <Link href="/book-now?service=foam">Book Now</Link>
