@@ -156,8 +156,7 @@ const LuxuryTransport = () => {
           <div className="flex-1 flex flex-col justify-center mt-6 lg:mt-0">
             <div className="grid grid-cols-1 gap-4 md:gap-6">
               {features.map((feature: any, index: number) => (
-                <div key={index} className="flex items-center space-x-4 text-[#fefefe]/80 group-hover:text-[#fefefe] 
-                                        transition-colors duration-300 bg-[#060404]/50 p-3 md:p-4 rounded-lg">
+                <div key={index} className="flex items-center space-x-4 text-[#fefefe]/80 group-hover:text-[#fefefe] transition-colors duration-300 bg-[#060404]/50 p-3 md:p-4 rounded-lg">
                   <feature.icon className="w-5 h-5 md:w-6 md:h-6 text-[#ff0054] flex-shrink-0" />
                   <span className="text-base md:text-lg">{feature.text}</span>
                 </div>

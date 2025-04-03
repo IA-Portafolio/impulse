@@ -177,15 +177,11 @@ export default function GMCPage() {
             {features.map((feature, index) => (
               <Card 
                 key={index}
-                className="group relative bg-gradient-to-br from-[#060404]/95 to-[#060404]/80 
-                          backdrop-blur-sm border-2 border-[#ff0054]/10 hover:border-[#ff0054]
-                          transition-all duration-500 rounded-xl shadow-lg hover:shadow-[#ff0054]/20
-                          p-4 sm:p-6"
+                className="group relative bg-gradient-to-br from-[#060404]/95 to-[#060404]/80 backdrop-blur-sm border-2 border-[#ff0054]/10 hover:border-[#ff0054]transition-all duration-500 rounded-xl shadow-lg hover:shadow-[#ff0054]/20p-4 sm:p-6"
               >
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ff0054]/0 via-[#ff0054]/5 to-[#fbe40b]/0 
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl" />
-                
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ff0054]/0 via-[#ff0054]/5 to-[#fbe40b]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl" />
+
                 {/* Card content */}
                 <div className="relative z-10">
                   {/* Header */}
@@ -246,11 +242,7 @@ export default function GMCPage() {
           <div className="text-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                       text-[#fefefe] font-bebas text-lg sm:text-xl md:text-2xl 
-                       px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8
-                       transform hover:scale-105 transition-all duration-300
-                       shadow-lg hover:shadow-[#ff0054]/50"
+              className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-lg sm:text-xl md:text-2xl px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8transform hover:scale-105 transition-all duration-300shadow-lg hover:shadow-[#ff0054]/50"
               asChild
             >
              <Link href="/book-now?service=transport">Book Now</Link>

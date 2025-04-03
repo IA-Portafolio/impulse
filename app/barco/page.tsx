@@ -166,8 +166,7 @@ export default function BoatPage() {
             {features.map((feature, index) => (
               <div key={index} className="feature-card-container">
                 <Card 
-                  className="feature-card bg-[#060404]/40 backdrop-blur-md
-                            border-2 border-[#ff0054]/20 hover:border-[#ff0054]"
+                  className="feature-card bg-[#060404]/40 backdrop-blur-md border-2 border-[#ff0054]/20 hover:border-[#ff0054]"
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
@@ -191,12 +190,7 @@ export default function BoatPage() {
           {/* Book Now Button at the bottom */}
           <div className="text-center mt-16">
           
-<Button 
-  className="book-now-button bg-gradient-to-r from-[#ff0054] to-[#fbe40b] 
-           hover:from-[#fbe40b] hover:to-[#ff0054] 
-           text-[#fefefe] font-bebas text-3xl px-16 py-8"
-  asChild
->
+<Button className="book-now-button bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-3xl px-16 py-8" asChild>
 <Link href="/book-now?service=pontoons">BOOK NOW</Link>
 </Button>
           </div>

@@ -76,16 +76,9 @@ export default function AboutPage() {
       {/* Background with static gradients - ajustados para ser responsivos */}
       <div className="absolute inset-0 z-0">
         {/* Light effects - más pequeños en móvil, más grandes en pantallas grandes */}
-        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] lg:w-[600px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] lg:h-[600px] 
-                      bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[120px] lg:blur-[150px] opacity-20"></div>
-        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] lg:w-[600px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] lg:h-[600px] 
-                      bg-[#fbe40b] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[120px] lg:blur-[150px] opacity-20"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                      w-[300px] sm:w-[500px] md:w-[650px] lg:w-[800px] 
-                      h-[300px] sm:h-[500px] md:h-[650px] lg:h-[800px] 
-                      bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[100px] sm:blur-[130px] md:blur-[150px] lg:blur-[180px] opacity-10"></div>
+        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] lg:w-[600px] h-[250px] sm:h-[350px] md:h-[500px] lg:h-[600px] bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[120px] lg:blur-[150px] opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] lg:w-[600px] h-[250px] sm:h-[350px] md:h-[500px] lg:h-[600px] bg-[#fbe40b] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[120px] lg:blur-[150px] opacity-20"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[650px] lg:w-[800px] h-[300px] sm:h-[500px] md:h-[650px] lg:h-[800px] bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[100px] sm:blur-[130px] md:blur-[150px] lg:blur-[180px] opacity-10"></div>
       </div>
 
       {/* Main content - padding ajustado para dispositivos */}
@@ -97,16 +90,8 @@ export default function AboutPage() {
               WHO WE ARE
             </span>
             {/* Title decoration - ajustado para ser proporcional al texto */}
-            <div className="absolute -right-8 sm:-right-10 md:-right-12 lg:-right-16 
-                          -top-8 sm:-top-10 md:-top-12 lg:-top-16 
-                          w-16 sm:w-20 md:w-24 lg:w-32 
-                          h-16 sm:h-20 md:h-24 lg:h-32 
-                          bg-gradient-to-br from-[#ff0054] to-[#fbe40b] rounded-full opacity-20"></div>
-            <div className="absolute -left-8 sm:-left-10 md:-left-12 lg:-left-16 
-                          -bottom-4 sm:-bottom-6 md:-bottom-7 lg:-bottom-8 
-                          w-12 sm:w-16 md:w-20 lg:w-24 
-                          h-12 sm:h-16 md:h-20 lg:h-24 
-                          bg-gradient-to-br from-[#fbe40b] to-[#ff0054] rounded-full opacity-20"></div>
+            <div className="absolute -right-8 sm:-right-10 md:-right-12 lg:-right-16 -top-8 sm:-top-10 md:-top-12 lg:-top-16 w-16 sm:w-20 md:w-24 lg:w-32 h-16 sm:h-20 md:h-24 lg:h-32 bg-gradient-to-br from-[#ff0054] to-[#fbe40b] rounded-full opacity-20"></div>
+            <div className="absolute -left-8 sm:-left-10 md:-left-12 lg:-left-16 -bottom-4 sm:-bottom-6 md:-bottom-7 lg:-bottom-8 w-12 sm:w-16 md:w-20 lg:w-24 h-12 sm:h-16 md:h-20 lg:h-24 bg-gradient-to-br from-[#fbe40b] to-[#ff0054] rounded-full opacity-20"></div>
           </h1>
 
           <div className="max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto relative">
@@ -158,24 +143,14 @@ export default function AboutPage() {
                       <div className="relative h-full flex flex-col items-center justify-center p-4 sm:p-6 text-center">
                         {/* Profile Image or Icon - tamaños ajustados para móvil */}
                         {member.useIcon ? (
-                          <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full 
-                                      bg-gradient-to-br from-[#ff0054] to-[#fbe40b] 
-                                      flex items-center justify-center mb-6 sm:mb-8
-                                      shadow-lg shadow-[#ff0054]/30 group-hover:shadow-[#ff0054]/50 
-                                      transition-all duration-300 transform group-hover:scale-110"
-                          >
+                          <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-[#ff0054] to-[#fbe40b] flex items-center justify-center mb-6 sm:mb-8 shadow-lg shadow-[#ff0054]/30 group-hover:shadow-[#ff0054]/50 transition-all duration-300 transform group-hover:scale-110">
                             <Users className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 text-[#060404]" />
                             
                             {/* Shine effect */}
-                            <div className="absolute inset-0 rounded-full 
-                                          bg-gradient-to-r from-transparent via-[#fefefe]/20 to-transparent 
-                                          opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#fefefe]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                           </div>
                         ) : (
-                          <div className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] rounded-xl overflow-hidden 
-                                       shadow-lg shadow-[#ff0054]/30 group-hover:shadow-[#ff0054]/50 
-                                       transition-all duration-300 transform group-hover:scale-105 mb-6 sm:mb-8
-                                       border-2 border-[#ff0054]/30">
+                          <div className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] rounded-xl overflow-hidden shadow-lg shadow-[#ff0054]/30 group-hover:shadow-[#ff0054]/50 transition-all duration-300 transform group-hover:scale-105 mb-6 sm:mb-8 border-2 border-[#ff0054]/30">
                             <Image
                               src={member.imageUrl || ""}
                               alt={member.name}
@@ -184,9 +159,7 @@ export default function AboutPage() {
                               style={{ objectPosition: 'center top' }}
                             />
                             {/* Shine effect */}
-                            <div className="absolute inset-0 
-                                          bg-gradient-to-r from-transparent via-[#fefefe]/20 to-transparent 
-                                          opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fefefe]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                           </div>
                         )}
                         
@@ -202,9 +175,7 @@ export default function AboutPage() {
                   
                   {/* Card back (Bio) */}
                   <div className="absolute inset-0 backface-hidden rotate-y-180">
-                    <div className="relative h-full w-full rounded-2xl bg-[#060404] border-2 border-[#fbe40b]/20 hover:border-[#fbe40b] transition-colors duration-300 p-4 sm:p-6 
-                                  flex flex-col items-center justify-center text-center"
-                    >
+                    <div className="relative h-full w-full rounded-2xl bg-[#060404] border-2 border-[#fbe40b]/20 hover:border-[#fbe40b] transition-colors duration-300 p-4 sm:p-6 flex flex-col items-center justify-center text-center">
                       {/* Diagonal background effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-[#ff0054]/10 to-[#fbe40b]/10 opacity-50"></div>
                       
@@ -267,10 +238,7 @@ export default function AboutPage() {
               </p>
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                         text-[#060404] font-bebas text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 
-                         transform hover:scale-105 transition-all duration-300
-                         shadow-lg hover:shadow-[#ff0054]/50"
+                className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#060404] font-bebas text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#ff0054]/50"
                 asChild
               >
                 <Link href="/contact" className="flex items-center gap-2 sm:gap-3">
@@ -282,12 +250,8 @@ export default function AboutPage() {
           </div>
           
           {/* Decoration behind the button - ajustado para pantallas pequeñas */}
-          <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 -right-4 sm:-right-6 md:-right-8 
-                        w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-32 
-                        bg-gradient-to-br from-[#ff0054] to-[#fbe40b] rounded-full opacity-20 blur-md sm:blur-lg -z-10"></div>
-          <div className="absolute -top-4 sm:-top-6 md:-top-8 -left-4 sm:-left-6 md:-left-8 
-                        w-12 sm:w-16 md:w-24 h-12 sm:h-16 md:h-24 
-                        bg-gradient-to-br from-[#fbe40b] to-[#ff0054] rounded-full opacity-20 blur-md sm:blur-lg -z-10"></div>
+          <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 -right-4 sm:-right-6 md:-right-8 w-16 sm:w-24 md:w-32 h-16 sm:h-24 md:h-32 bg-gradient-to-br from-[#ff0054] to-[#fbe40b] rounded-full opacity-20 blur-md sm:blur-lg -z-10"></div>
+          <div className="absolute -top-4 sm:-top-6 md:-top-8 -left-4 sm:-left-6 md:-left-8 w-12 sm:w-16 md:w-24 h-12 sm:h-16 md:h-24 bg-gradient-to-br from-[#fbe40b] to-[#ff0054] rounded-full opacity-20 blur-md sm:blur-lg -z-10"></div>
         </div>
       </div>
 

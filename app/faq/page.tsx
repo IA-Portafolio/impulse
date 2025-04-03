@@ -97,22 +97,9 @@ export default function FAQPage() {
       {/* Fondo con gradiente y efectos */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#ff0054]/20 to-[#fbe40b]/20">
         {/* Efectos de luz - Ajustados para diferentes tamaños de pantalla */}
-        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] 
-                      bg-[#ff0054] rounded-full mix-blend-multiply 
-                      filter blur-[50px] sm:blur-[100px] md:blur-[150px] 
-                      animate-pulse opacity-30"></div>
-        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] 
-                      bg-[#fbe40b] rounded-full mix-blend-multiply 
-                      filter blur-[50px] sm:blur-[100px] md:blur-[150px] 
-                      animate-pulse delay-700 opacity-30"></div>
-        <div className="absolute top-1/2 left-1/2 w-[300px] sm:w-[400px] md:w-[600px] 
-                      h-[300px] sm:h-[400px] md:h-[600px] 
-                      bg-[#ff0054] rounded-full mix-blend-multiply 
-                      filter blur-[50px] sm:blur-[100px] md:blur-[150px] 
-                      animate-pulse delay-1000 opacity-20 
-                      transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[100px] md:blur-[150px] animate-pulse opacity-30"></div>
+        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-[#fbe40b] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[100px] md:blur-[150px] animate-pulse delay-700 opacity-30"></div>
+        <div className="absolute top-1/2 left-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[100px] md:blur-[150px] animate-pulse delay-1000 opacity-20 transform -translate-x-1/2 -translate-y-1/2"></div>
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
