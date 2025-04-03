@@ -70,10 +70,10 @@ const services = [
     icon: CloudRain,
     image: "/images/foam-party.png",
     options: [
-      { name: "Foam Party Package", price: 31500 },
-      { name: "Color Foam Party Package", price: 42000 },
-      { name: "Glow in the Dark Foam Party Package", price: 44500 },
-      { name: "Foam Pit Package", price: 31500 }
+      { name: "Foam Party Package, Per hour", price: 31500 },
+      { name: "Color Foam Party Package, Per hour", price: 42000 },
+      { name: "Glow in the Dark Foam Party Package, Per hour", price: 44500 },
+      { name: "Foam Pit Package, Per hour", price: 31500 }
     ]
   },
   {
@@ -120,10 +120,10 @@ const serviceImageMap: Record<string, string> = {
   "Qwest Pontoon": "/images/quest-c.jpg",
   "Ice Pops Mega Front Loader, 8 hours": "/images/bounce-houses.png",
   "Ninja Bounce House, 8 hours": "/images/ninja-2.png",
-  "Foam Party Package": "/images/foam-party.png",
-  "Color Foam Party Package": "/images/foamcolor.png",
-  "Glow in the Dark Foam Party Package": "/images/fotofoamnoche.jpg",
-  "Foam Pit Package": "/images/foampit.png",
+  "Foam Party Package, Per hour": "/images/foam-party.png",
+  "Color Foam Party Package, Per hour": "/images/foamcolor.png",
+  "Glow in the Dark Foam Party Package, Per hour": "/images/fotofoamnoche.jpg",
+  "Foam Pit Package, Per hour": "/images/foampit.png",
   "GMC Yukon AT4 XL": "/images/Gmc/1.jpg",
   "Chevrolet Suburban": "/images/sub/lado2.png",
   "BMW X7": "/images/bmw/1.jpg",
@@ -268,6 +268,7 @@ interface BookingState {
     tube: number;
     inflatableToy: number;
     pet: boolean;
+    captain: boolean;
   };
   // Nuevo campo para la oferta combinada
   combinedOffer: {
@@ -301,7 +302,8 @@ export default function BookNowPage() {
       floatingMat: 0,
       tube: 0,
       inflatableToy: 0,
-      pet: false
+      pet: false,
+      captain: false
     },
     // Inicializar el nuevo campo
     combinedOffer: {
@@ -383,7 +385,8 @@ export default function BookNowPage() {
           floatingMat: 0,
           tube: 0,
           inflatableToy: 0,
-          pet: false
+          pet: false,
+          captain: false
         },
         // Resetear oferta combinada
         combinedOffer: {
@@ -541,7 +544,8 @@ export default function BookNowPage() {
     return (booking.addOns.floatingMat * 2500) + 
            (booking.addOns.tube * 1000) + 
            (booking.addOns.inflatableToy * 1000) + 
-           (booking.addOns.pet ? 2500 : 0);
+           (booking.addOns.pet ? 2500 : 0) +
+           (booking.addOns.captain ? 3500 : 0);
   };
 
   // Calcular el precio total incluyendo la oferta combinada
@@ -888,6 +892,28 @@ export default function BookNowPage() {
                                   </div>
                                 </div>
                                 
+                                {/* Captain */}
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <p className="font-medium text-[#ff0054] text-lg">Captain</p>
+                                    <p className="text-sm text-[#060404]">1 per booking</p>
+                                  </div>
+                                  <div className="flex items-center gap-4">
+                                    <div className="flex items-center h-9">
+                                      <span className="mr-2 text-[#060404] text-base font-medium">Select</span>
+                                      <input
+                                        id="captain-checkbox"
+                                        type="checkbox"
+                                        checked={booking.addOns.captain}
+                                        onChange={(e) => handleAddOnChange('captain', e.target.checked)}
+                                        className="w-5 h-5 text-green-500 bg-gray-100 border-2 border-[#ff0054] rounded 
+                                                 focus:ring-[#ff0054] focus:ring-offset-2 cursor-pointer transition-colors duration-200"
+                                      />
+                                    </div>
+                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$35.00</span>
+                                  </div>
+                                </div>
+                                
                                 {/* Bring a Pet */}
                                 <div className="flex items-center justify-between">
                                   <div>
@@ -911,14 +937,15 @@ export default function BookNowPage() {
                                 </div>
                                 
                                 {/* Mostrar subtotal de add-ons */}
-                                {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet) && (
+                                {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain) && (
                                   <div className="mt-6 pt-4 border-t-2 border-[#ff0054]/30 flex justify-between items-center">
                                     <p className="font-medium text-[#ff0054] text-lg">Add-ons Subtotal:</p>
                                     <p className="font-bold text-[#ff0054] text-xl">
                                       ${((booking.addOns.floatingMat * 25) + 
                                          (booking.addOns.tube * 10) + 
                                          (booking.addOns.inflatableToy * 10) + 
-                                         (booking.addOns.pet ? 25 : 0)).toFixed(2)}
+                                         (booking.addOns.pet ? 25 : 0) +
+                                         (booking.addOns.captain ? 35 : 0)).toFixed(2)}
                                     </p>
                                   </div>
                                 )}
@@ -1325,6 +1352,12 @@ export default function BookNowPage() {
                               <dd className="text-[#fefefe]">${(booking.addOns.inflatableToy * 10).toFixed(2)}</dd>
                             </div>
                           )}
+                          {booking.addOns.captain && (
+                            <div className="flex justify-between ml-4">
+                              <dd className="text-[#fefefe]">Captain</dd>
+                              <dd className="text-[#fefefe]">$35.00</dd>
+                            </div>
+                          )}
                           {booking.addOns.pet && (
                             <div className="flex justify-between ml-4">
                               <dd className="text-[#fefefe]">Pet Fee</dd>
@@ -1333,7 +1366,7 @@ export default function BookNowPage() {
                           )}
                           
                           {/* Subtotal de Add-ons */}
-                          {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet) && (
+                          {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain) && (
                             <div className="flex justify-between mt-2 pt-2 border-t border-[#fefefe]/10">
                               <dt className="text-[#fbe40b]/70">Add-ons Subtotal:</dt>
                               <dd className="text-[#fefefe]">${(bookingSummary.addOnsTotal/100).toFixed(2)}</dd>
