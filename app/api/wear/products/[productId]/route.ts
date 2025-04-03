@@ -1,5 +1,8 @@
-// app/api/printify/products/[productId]/route.ts
+// app/api/wear/products/[productId]/route.ts
 import { NextResponse } from 'next/server';
+
+// Asegurar que la ruta sea dinámica
+export const dynamic = 'force-dynamic';
 
 // Almacenar variables de entorno seguras para producción
 const API_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzN2Q0YmQzMDM1ZmUxMWU5YTgwM2FiN2VlYjNjY2M5NyIsImp0aSI6IjIxMDFiZmUyYzU2NjhlNjgxMTNjMmFhNGY0YjkzMjFkN2E4ZGI0ZTMwZmMzYzVmNTczZWU1N2NkYzU2YTFlMGRiM2IxOWQ5NDllYmE4NmFiIiwiaWF0IjoxNzQwMjY5MDU1Ljk5MDQ1NCwibmJmIjoxNzQwMjY5MDU1Ljk5MDQ1NywiZXhwIjoxNzcxODA1MDU1Ljk3NDc5Miwic3ViIjoiMTA5MTMzMzAiLCJzY29wZXMiOlsic2hvcHMubWFuYWdlIiwic2hvcHMucmVhZCIsImNhdGFsb2cucmVhZCIsIm9yZGVycy5yZWFkIiwib3JkZXJzLndyaXRlIiwicHJvZHVjdHMucmVhZCIsInByb2R1Y3RzLndyaXRlIiwid2ViaG9va3MucmVhZCIsIndlYmhvb2tzLndyaXRlIiwidXBsb2Fkcy5yZWFkIiwidXBsb2Fkcy53cml0ZSIsInByaW50X3Byb3ZpZGVycy5yZWFkIiwidXNlci5pbmZvIl19.AVooeLzDiGre0JFGufX7PPjYif9LGg8DWHQH9Y_7n6kYNLbwaHONCiDYxuXrivTU3DTJU81u7cDNtLDNDP0';
@@ -9,12 +12,13 @@ const SHOP_ID = '5981437';
 // const API_TOKEN = process.env.PRINTIFY_API_TOKEN;
 // const SHOP_ID = process.env.PRINTIFY_SHOP_ID;
 
-export async function GET(
-    request: Request,
-    { params }: { params: { productId: string } }
-) {
+// Versión simplificada que evita el problema de tipos
+export async function GET(req: Request) {
     try {
-        const productId = params.productId;
+        // Extraer el productId de la URL
+        const url = new URL(req.url);
+        const segments = url.pathname.split('/');
+        const productId = segments[segments.length - 1];
 
         if (!productId) {
             return NextResponse.json(
@@ -31,7 +35,6 @@ export async function GET(
                     'Authorization': `Bearer ${API_TOKEN}`,
                     'User-Agent': 'Impulse Rentals Web App'
                 },
-                // Importante: esto asegura que las credenciales y tokens se envíen desde el servidor
                 cache: 'no-store'
             }
         );
@@ -46,7 +49,7 @@ export async function GET(
 
         // Devolver los datos al cliente
         return NextResponse.json(data);
-    } catch (error: any) {
+    } catch (error) {
         console.error('Error fetching product from Printify:', error);
         return NextResponse.json(
             { error: 'Error al obtener el producto de Printify' },

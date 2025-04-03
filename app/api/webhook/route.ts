@@ -8,7 +8,9 @@ import { prisma } from '@/lib/prisma';
 // Esta función procesa los webhooks de Stripe
 export async function POST(req: Request) {
     const body = await req.text();
-    const signature = headers().get('stripe-signature');
+    // Await a la función headers() para obtener el objeto ReadonlyHeaders
+    const headersList = await headers();
+    const signature = headersList.get('stripe-signature');
 
     if (!signature || !process.env.STRIPE_WEBHOOK_SECRET) {
         return NextResponse.json(

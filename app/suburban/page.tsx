@@ -221,16 +221,7 @@ export default function SuburbanPage() {
                   onMouseLeave={() => setHighlightedPoint(null)}
                 >
                   <div className="flex items-center">
-                    <div className={`
-                      w-12 h-12 rounded-full flex items-center justify-center
-                      ${highlightedPoint === feature.id 
-                        ? 'bg-[#ff0054]' 
-                        : 'bg-[#fbe40b]'
-                      }
-                      transition-all duration-500
-                      animate-pulse
-                      relative
-                    `}>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center${highlightedPoint === feature.id ? 'bg-[#ff0054]' : 'bg-[#fbe40b]'}transition-all duration-500animate-pulserelative`}>
                       <span className="text-[#060404] font-bold text-xl">{feature.id}</span>
                       <span className="absolute -top-1 -right-1 bg-[#060404] text-[#fefefe] p-1 rounded-full">
                         <Sparkles className="w-3 h-3" />
@@ -238,16 +229,7 @@ export default function SuburbanPage() {
                     </div>
                     
                     {/* Tooltip with information */}
-                    <div className={`
-                      ml-4 w-56 p-4 rounded-lg shadow-xl
-                      ${highlightedPoint === feature.id 
-                        ? 'opacity-100 visible translate-x-0' 
-                        : 'opacity-0 invisible -translate-x-2'
-                      }
-                      transition-all duration-300
-                      bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                      text-[#060404]
-                    `}>
+                    <div className={`ml-4 w-56 p-4 rounded-lg shadow-xl${highlightedPoint === feature.id ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible -translate-x-2'}transition-all duration-300bg-gradient-to-br from-[#ff0054] to-[#fbe40b]text-[#060404]`}>
                       <h4 className="font-bebas text-xl mb-1">{feature.title}</h4>
                       <p className="text-sm font-medium">{feature.description}</p>
                     </div>
@@ -280,30 +262,13 @@ export default function SuburbanPage() {
                 >
                   <div className="flex items-center justify-end">
                     {/* Tooltip with information */}
-                    <div className={`
-                      mr-4 w-56 p-4 rounded-lg shadow-xl
-                      ${highlightedPoint === feature.id 
-                        ? 'opacity-100 visible translate-x-0' 
-                        : 'opacity-0 invisible translate-x-2'
-                      }
-                      transition-all duration-300
-                      bg-gradient-to-br from-[#ff0054] to-[#fbe40b]
-                      text-[#060404]
-                    `}>
+                    <div className={`mr-4 w-56 p-4 rounded-lg shadow-xl${highlightedPoint === feature.id ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-2'}transition-all duration-300bg-gradient-to-br from-[#ff0054] to-[#fbe40b]text-[#060404]`}>
                       <h4 className="font-bebas text-xl mb-1">{feature.title}</h4>
                       <p className="text-sm font-medium">{feature.description}</p>
                     </div>
                     
                     <div className={`
-                      w-12 h-12 rounded-full flex items-center justify-center
-                      ${highlightedPoint === feature.id 
-                        ? 'bg-[#ff0054]' 
-                        : 'bg-[#fbe40b]'
-                      }
-                      transition-all duration-500
-                      animate-pulse
-                      relative
-                    `}>
+                      w-12 h-12 rounded-full flex items-center justify-center${highlightedPoint === feature.id ? 'bg-[#ff0054]' : 'bg-[#fbe40b]'}transition-all duration-500animate-pulserelative`}>
                       <span className="text-[#060404] font-bold text-xl">{feature.id}</span>
                       <span className="absolute -top-1 -left-1 bg-[#060404] text-[#fefefe] p-1 rounded-full">
                         <Sparkles className="w-3 h-3" />
@@ -321,49 +286,26 @@ export default function SuburbanPage() {
       <div className="relative py-12 sm:py-16 md:py-24 bg-[#060404]">
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 
-                        bg-[#ff0054] rounded-full mix-blend-multiply 
-                        filter blur-[50px] sm:blur-[80px] md:blur-[128px] 
-                        animate-pulse opacity-30"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 
-                        bg-[#fbe40b] rounded-full mix-blend-multiply 
-                        filter blur-[50px] sm:blur-[80px] md:blur-[128px] 
-                        animate-pulse delay-700 opacity-30"></div>
+          <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[80px] md:blur-[128px] animate-pulse opacity-30"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#fbe40b] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[80px] md:blur-[128px] animate-pulse delay-700 opacity-30"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bebas mb-10 sm:mb-16 md:mb-20">
-            <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
-              Features
-            </span>
+            <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">Features</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {featureCards.map((card, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">{featureCards.map((card, index) => (
               <div 
                 key={index}
-                className={`relative overflow-hidden rounded-xl group
-                          ${index === 1 && !isMobile ? 'md:transform md:scale-110 md:z-10' : ''}
-                          ${isMobile ? 'h-auto' : 'h-auto'}
-                         `}
+                className={`relative overflow-hidden rounded-xl group${index === 1 && !isMobile ? 'md:transform md:scale-110 md:z-10' : ''}${isMobile ? 'h-auto' : 'h-auto'}`}
               >
-                <div className={`absolute inset-0 
-                              ${index === 1 
-                                ? 'bg-gradient-to-br from-[#ff0054] to-[#fbe40b] opacity-50' 
-                                : 'bg-gradient-to-br from-[#ff0054]/20 to-[#fbe40b]/20 opacity-50'}
-                              group-hover:opacity-80 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0${index === 1 ? 'bg-gradient-to-br from-[#ff0054] to-[#fbe40b] opacity-50' : 'bg-gradient-to-br from-[#ff0054]/20 to-[#fbe40b]/20 opacity-50'}group-hover:opacity-80 transition-opacity duration-500`}></div>
                 
                 {index === 1 && (
-                  <div className="absolute top-0 right-0 p-2 bg-[#fbe40b] text-[#060404] font-bebas text-lg rounded-bl-lg z-20">
-                    FEATURED
-                  </div>
-                )}
+                  <div className="absolute top-0 right-0 p-2 bg-[#fbe40b] text-[#060404] font-bebas text-lg rounded-bl-lg z-20">FEATURED</div>)}
                 
-                <div className={`relative z-10 p-6 sm:p-8 
-                              ${index === 1 
-                                ? 'border-2 border-[#ff0054]' 
-                                : 'border border-[#ff0054]/30'} 
-                              rounded-xl backdrop-blur-sm bg-[#060404]/70 h-full flex flex-col`}>
+                <div className={`relative z-10 p-6 sm:p-8${index === 1 ? 'border-2 border-[#ff0054]' : 'border border-[#ff0054]/30'} rounded-xl backdrop-blur-sm bg-[#060404]/70 h-full flex flex-col`}>
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bebas text-[#fefefe]">{card.title}</h3>
                     <div className={`p-2 sm:p-3 ${index === 1 ? 'bg-[#fbe40b]' : 'bg-[#ff0054]'} rounded-full`}>
@@ -395,11 +337,8 @@ export default function SuburbanPage() {
           <source src="/images/sub/suburban-video.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#060404]/40 flex flex-col items-center justify-center px-4">
-          <h2 className="text-[#fefefe] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bebas text-center mb-8 sm:mb-12">
-            Dominate the{" "}
-            <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
-              Road
-            </span>
+          <h2 className="text-[#fefefe] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bebas text-center mb-8 sm:mb-12">Dominate the{" "}
+            <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">Road</span>
             <br />
             With Elegance
           </h2>
@@ -407,12 +346,7 @@ export default function SuburbanPage() {
           {/* Book Now Button - responsive */}
           <Button 
             size="lg" 
-            className="relative overflow-hidden group
-                     bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                     text-[#fefefe] font-bebas text-lg sm:text-xl md:text-2xl lg:text-3xl 
-                     px-6 sm:px-10 md:px-16 lg:px-20 py-4 sm:py-6 md:py-8 lg:py-10
-                     transform hover:scale-105 transition-all duration-500
-                     shadow-lg hover:shadow-[#ff0054]/50"
+            className="relative overflow-hidden groupbg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#fefefe] font-bebas text-lg sm:text-xl md:text-2xl lg:text-3xl px-6 sm:px-10 md:px-16 lg:px-20 py-4 sm:py-6 md:py-8 lg:py-10transform hover:scale-105 transition-all duration-500shadow-lg hover:shadow-[#ff0054]/50"
             asChild
           >
             <Link href="/book-now?service=transport" className="flex items-center gap-2 sm:gap-4">

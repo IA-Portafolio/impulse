@@ -61,25 +61,13 @@ export default function ContactPage() {
         ))}
         
         {/* Efectos de luz - más pequeños en dispositivos móviles */}
-        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] 
-                      bg-[#ff0054] rounded-full mix-blend-multiply 
-                      filter blur-[80px] sm:blur-[100px] md:blur-[150px] 
-                      animate-pulse opacity-20"></div>
-        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] 
-                      h-[250px] sm:h-[350px] md:h-[500px] 
-                      bg-[#fbe40b] rounded-full mix-blend-multiply 
-                      filter blur-[80px] sm:blur-[100px] md:blur-[150px] 
-                      animate-pulse delay-700 opacity-20"></div>
+        <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-[#ff0054] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[150px] animate-pulse opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-[#fbe40b] rounded-full mix-blend-multiply filter blur-[80px] sm:blur-[100px] md:blur-[150px] animate-pulse delay-700 opacity-20"></div>
       </div>
 
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto px-4">
         {/* Tarjeta de formulario */}
-        <Card className="bg-gradient-to-br from-[#060404]/80 to-[#060404]/95 backdrop-blur-sm 
-                      border-2 border-[#fbe40b]/20 hover:border-[#fbe40b]/50 
-                      transition-all duration-500 shadow-xl sm:shadow-2xl 
-                      hover:shadow-[0_0_15px_rgba(251,228,11,0.2)] sm:hover:shadow-[0_0_30px_rgba(251,228,11,0.3)]
-                      overflow-hidden relative">
+        <Card className="bg-gradient-to-br from-[#060404]/80 to-[#060404]/95 backdrop-blur-sm border-2 border-[#fbe40b]/20 hover:border-[#fbe40b]/50 transition-all duration-500 shadow-xl sm:shadow-2xl hover:shadow-[0_0_15px_rgba(251,228,11,0.2)] sm:hover:shadow-[0_0_30px_rgba(251,228,11,0.3)] overflow-hidden relative">
           {/* Efectos de brillo en las esquinas */}
           <div className="absolute top-0 left-0 w-10 sm:w-16 h-10 sm:h-16 bg-gradient-to-br from-[#ff0054] to-transparent opacity-50 blur-md rounded-br-full"></div>
           <div className="absolute bottom-0 right-0 w-10 sm:w-16 h-10 sm:h-16 bg-gradient-to-tl from-[#fbe40b] to-transparent opacity-50 blur-md rounded-tl-full"></div>
@@ -92,7 +80,7 @@ export default function ContactPage() {
                 <Sparkles className="text-[#ff0054] h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8" />
               </CardTitle>
               <CardDescription className="text-[#fefefe]/60 text-sm sm:text-base md:text-lg max-w-xl">
-                Complete the form and we'll get back to you soon to discuss your needs.
+                Complete the form and we&#39;ll get back to you soon to discuss your needs.
               </CardDescription>
             </div>
           </CardHeader>
@@ -111,9 +99,7 @@ export default function ContactPage() {
                       name="firstName"
                       value={formState.firstName}
                       onChange={handleChange}
-                      className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                               focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                               transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
+                      className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
                       placeholder="Your first name"
                       required
                     />
@@ -133,9 +119,7 @@ export default function ContactPage() {
                       name="lastName"
                       value={formState.lastName}
                       onChange={handleChange}
-                      className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                               focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                               transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
+                      className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
                       placeholder="Your last name"
                       required
                     />
@@ -158,9 +142,7 @@ export default function ContactPage() {
                     type="email"
                     value={formState.email}
                     onChange={handleChange}
-                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                             focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                             transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
+                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
                     placeholder="your@email.com"
                     required
                   />
@@ -182,9 +164,7 @@ export default function ContactPage() {
                     type="tel"
                     value={formState.phone}
                     onChange={handleChange}
-                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                             focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                             transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
+                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
                     placeholder="Your phone number"
                     required
                   />
@@ -205,9 +185,7 @@ export default function ContactPage() {
                     name="service"
                     value={formState.service}
                     onChange={handleChange}
-                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                             focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                             transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
+                    className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 pl-8 sm:pl-10 h-9 sm:h-10"
                     placeholder="Write the service you're interested in"
                   />
                   <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
@@ -226,9 +204,7 @@ export default function ContactPage() {
                   name="message"
                   value={formState.message}
                   onChange={handleChange}
-                  className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] 
-                           focus:border-[#ff0054] hover:border-[#ff0054]/50 
-                           transition-colors duration-200 min-h-[80px] sm:min-h-[100px] md:min-h-[120px]"
+                  className="bg-[#fefefe] border-2 border-[#060404]/10 text-[#060404] focus:border-[#ff0054] hover:border-[#ff0054]/50 transition-colors duration-200 min-h-[80px] sm:min-h-[100px] md:min-h-[120px]"
                   placeholder="Write your message here..."
                   required
                 />
@@ -238,12 +214,7 @@ export default function ContactPage() {
               <div>
                 <Button 
                   type="submit"
-                  className="w-full relative overflow-hidden group
-                           bg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] 
-                           text-[#060404] font-bebas text-lg sm:text-xl px-4 sm:px-6 md:px-8 
-                           py-3 sm:py-4 md:py-6
-                           transform hover:scale-105 transition-all duration-300
-                           shadow-md sm:shadow-lg hover:shadow-[#ff0054]/50 border-none"
+                  className="w-full relative overflow-hidden groupbg-gradient-to-r from-[#ff0054] to-[#fbe40b] hover:from-[#fbe40b] hover:to-[#ff0054] text-[#060404] font-bebas text-lg sm:text-xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6transform hover:scale-105 transition-all duration-300shadow-md sm:shadow-lg hover:shadow-[#ff0054]/50 border-none"
                 >
                   <span className="absolute top-0 left-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-[150%] transition-transform duration-700"></span>
                   SEND MESSAGE
@@ -262,7 +233,7 @@ export default function ContactPage() {
             transform: translateY(0) scale(1);
           }
           50% {
-            transform: translateY(-10px) sm:translateY(-15px) md:translateY(-20px) scale(1.05) sm:scale(1.08) md:scale(1.1);
+            transform: translateY(-10px); sm:translateY(-15px); md:translateY(-20px) scale(1.05); sm:scale(1.08); md:scale(1.1);
           }
         }
         
