@@ -359,6 +359,24 @@ export default function BookNowPage() {
     }
   }, []); // Este efecto se ejecuta solo una vez al cargar
 
+  // Nueva función para obtener las horas del paquete seleccionado
+  const getPackageHours = () => {
+    if (!booking.selectedPackage) return 0;
+    
+    const hourMatch = booking.selectedPackage.match(/(\d+)\s*Hours?/i);
+    if (hourMatch && hourMatch[1]) {
+      return parseInt(hourMatch[1]);
+    }
+    
+    return 0;
+  };
+
+  // Función para calcular el precio del capitán según las horas seleccionadas
+  const getCaptainHourlyPrice = () => {
+    const hours = getPackageHours();
+    return hours * 50.00; // $50 por hora
+  };
+
   // Select a service and move to step 2
   const handleServiceSelection = (serviceId: string) => {
     const service = services.find(s => s.id === serviceId);
@@ -541,11 +559,14 @@ export default function BookNowPage() {
 
   // Calcular el subtotal de add-ons
   const calculateAddOnsTotal = () => {
+    // Calcular el costo del capitán basado en las horas del paquete
+    const captainCost = booking.addOns.captain ? getCaptainHourlyPrice() * 100 : 0; // Convertir a centavos
+    
     return (booking.addOns.floatingMat * 2500) + 
            (booking.addOns.tube * 1000) + 
            (booking.addOns.inflatableToy * 1000) + 
            (booking.addOns.pet ? 2500 : 0) +
-           (booking.addOns.captain ? 3500 : 0);
+           captainCost;
   };
 
   // Calcular el precio total incluyendo la oferta combinada
@@ -892,11 +913,11 @@ export default function BookNowPage() {
                                   </div>
                                 </div>
                                 
-                                {/* Captain */}
+                                {/* Captain - MODIFICADO */}
                                 <div className="flex items-center justify-between">
                                   <div>
                                     <p className="font-medium text-[#ff0054] text-lg">Captain</p>
-                                    <p className="text-sm text-[#060404]">1 per booking</p>
+                                    <p className="text-sm text-[#060404]">50$ per hour</p>
                                   </div>
                                   <div className="flex items-center gap-4">
                                     <div className="flex items-center h-9">
@@ -910,7 +931,9 @@ export default function BookNowPage() {
                                                  focus:ring-[#ff0054] focus:ring-offset-2 cursor-pointer transition-colors duration-200"
                                       />
                                     </div>
-                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$35.00</span>
+                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">
+                                      ${getCaptainHourlyPrice().toFixed(2)}
+                                    </span>
                                   </div>
                                 </div>
                                 
@@ -945,7 +968,7 @@ export default function BookNowPage() {
                                          (booking.addOns.tube * 10) + 
                                          (booking.addOns.inflatableToy * 10) + 
                                          (booking.addOns.pet ? 25 : 0) +
-                                         (booking.addOns.captain ? 35 : 0)).toFixed(2)}
+                                         (booking.addOns.captain ? getCaptainHourlyPrice() : 0)).toFixed(2)}
                                     </p>
                                   </div>
                                 )}
@@ -1354,8 +1377,8 @@ export default function BookNowPage() {
                           )}
                           {booking.addOns.captain && (
                             <div className="flex justify-between ml-4">
-                              <dd className="text-[#fefefe]">Captain</dd>
-                              <dd className="text-[#fefefe]">$35.00</dd>
+                              <dd className="text-[#fefefe]">Captain (${getCaptainHourlyPrice().toFixed(2)}/hour)</dd>
+                              <dd className="text-[#fefefe]">${getCaptainHourlyPrice().toFixed(2)}</dd>
                             </div>
                           )}
                           {booking.addOns.pet && (
