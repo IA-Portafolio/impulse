@@ -2,10 +2,10 @@
   "name": "nextjs",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "cp -r .next/static .next/standalone/.next/ && node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
