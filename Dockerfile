@@ -1,24 +1,21 @@
-FROM node:20-alpine
-
+FROM node:20-alpine AS builder
 WORKDIR /app
-
-# Copiar package.json y package-lock.json para instalar dependencias
+# Instalar dependencias
 COPY package*.json ./
 RUN npm install
-
-# Copiar el código fuente del proyecto
+# Copiar código fuente y construir
 COPY . .
-
-# Construir la aplicación Next.js
 RUN npm run build
 
-# Preparar los archivos estáticos y públicos
-RUN mkdir -p .next/standalone/.next/static
-RUN cp -r .next/static .next/standalone/.next/
-RUN cp -r public .next/standalone/
-
-# Exponer el puerto (ajústalo según tu configuración)
+FROM node:20-alpine AS runner
+WORKDIR /app
+# Copiar solo los archivos necesarios desde la etapa de construcción
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+# Configuración del entorno
 EXPOSE 80
-
-# Comando para ejecutar la aplicación
-CMD ["node", ".next/standalone/server.js"]
+ENV PORT=80
+ENV NODE_ENV=production
+# Ejecutar la aplicación
+CMD ["node", "server.js"]
