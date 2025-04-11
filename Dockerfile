@@ -3,8 +3,10 @@ WORKDIR /app
 # Instalar dependencias
 COPY package*.json ./
 RUN npm install
-# Copiar código fuente y construir
+# Copiar código fuente
 COPY . .
+# Generar el cliente Prisma y luego construir
+RUN npx prisma generate
 RUN npm run build
 
 FROM node:20-alpine AS runner
@@ -13,6 +15,9 @@ WORKDIR /app
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+# Copiar los archivos generados de Prisma
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 # Configuración del entorno
 EXPOSE 80
 ENV PORT=80
