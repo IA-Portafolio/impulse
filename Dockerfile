@@ -1,55 +1,24 @@
-# Utilizamos Node 18 en Alpine como base para reducir el tamaño de la imagen
-FROM node:18-alpine AS base
+FROM node:20-alpine
 
-# Fase de dependencias
-FROM base AS deps
 WORKDIR /app
 
-# Instalamos las dependencias necesarias para paquetes nativos
-RUN apk add --no-cache libc6-compat
+# Copiar package.json y package-lock.json para instalar dependencias
+COPY package*.json ./
+RUN npm install
 
-# Copiamos los archivos de configuración del proyecto
-COPY package.json package-lock.json* ./
-
-# Instalamos las dependencias
-RUN npm ci
-
-# Fase de construcción
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Copiar el código fuente del proyecto
 COPY . .
 
-# Construimos la aplicación
+# Construir la aplicación Next.js
 RUN npm run build
 
-# Fase de producción
-FROM base AS runner
-WORKDIR /app
+# Preparar los archivos estáticos y públicos
+RUN mkdir -p .next/standalone/.next/static
+RUN cp -r .next/static .next/standalone/.next/
+RUN cp -r public .next/standalone/
 
-# Configuramos el entorno para producción
-ENV NODE_ENV production
+# Exponer el puerto (ajústalo según tu configuración)
+EXPOSE 80
 
-# Creamos un usuario no privilegiado para ejecutar la aplicación
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copiamos los archivos necesarios desde la fase de construcción
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Creamos directorio para las fuentes y aseguramos los permisos correctos
-RUN mkdir -p /app/public/fonts && chown -R nextjs:nodejs /app
-
-# Cambiamos al usuario no privilegiado
-USER nextjs
-
-# Exponemos el puerto que usará la aplicación
-EXPOSE 3000
-
-# Definimos la variable de entorno para el host
-ENV HOSTNAME "0.0.0.0"
-
-# Comando para iniciar la aplicación
-CMD ["node", "server.js"]
+# Comando para ejecutar la aplicación
+CMD ["node", ".next/standalone/server.js"]
