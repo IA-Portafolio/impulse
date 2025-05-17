@@ -9,13 +9,15 @@ import { useEffect, useRef, useState } from "react"
 
 export default function Hero() {
   const [currentVideo, setCurrentVideo] = useState(0)
+  const [videosLoaded, setVideosLoaded] = useState(false)
+  const [isTextTransitioning, setIsTextTransitioning] = useState(false)
   const firstVideoRef = useRef<HTMLVideoElement>(null)
   const secondVideoRef = useRef<HTMLVideoElement>(null)
   const isTransitioning = useRef(false)
 
   const videos = [
     {
-      src: "/videos/video-portada-1.mp4",
+      src: "/videos/portada1.mp4",
       titleLine1: "CREATING",
       titleLine2: "UNFORGETTABLE MOMENTS"
     },
@@ -26,21 +28,34 @@ export default function Hero() {
     }
   ]
 
-  const startVideoTransition = (currentRef: HTMLVideoElement, nextRef: HTMLVideoElement) => {
+  const startVideoTransition = (currentRef: HTMLVideoElement, nextRef: HTMLVideoElement, nextIndex: number) => {
     if (!isTransitioning.current) {
       isTransitioning.current = true
       
-      // Iniciar reproducción del siguiente video
-      nextRef.play().catch(console.error)
-      nextRef.style.opacity = '1'
+      // Iniciar transición del texto
+      setIsTextTransitioning(true)
       
-      // Resetear el video actual
+      // Preparar el siguiente video
+      nextRef.currentTime = 0
+      nextRef.play().catch(console.error)
+      
+      // Transición suave del video actual al siguiente
+      nextRef.style.opacity = '0'
+      setTimeout(() => {
+        nextRef.style.opacity = '1'
+      }, 50)
+
+      // Transición suave del video actual
       setTimeout(() => {
         currentRef.style.opacity = '0'
-        currentRef.currentTime = 0
-        currentRef.load()
-        isTransitioning.current = false
-      }, 2000)
+        setTimeout(() => {
+          currentRef.pause()
+          currentRef.currentTime = 0
+          setCurrentVideo(nextIndex)
+          setIsTextTransitioning(false)
+          isTransitioning.current = false
+        }, 1000)
+      }, 1000)
     }
   }
 
@@ -49,23 +64,28 @@ export default function Hero() {
     const secondVideo = secondVideoRef.current
 
     if (firstVideo && secondVideo) {
-      // Configuración inicial
-      firstVideo.play().catch(console.error)
-      secondVideo.load()
+      // Esperar a que ambos videos estén cargados
+      const handleCanPlay = () => {
+        if (firstVideo.readyState >= 3 && secondVideo.readyState >= 3) {
+          setVideosLoaded(true)
+          firstVideo.play().catch(console.error)
+        }
+      }
+
+      firstVideo.addEventListener('canplay', handleCanPlay)
+      secondVideo.addEventListener('canplay', handleCanPlay)
 
       // Monitorear el tiempo del primer video
       const checkFirstVideoTime = () => {
-        if (firstVideo && secondVideo && firstVideo.currentTime >= firstVideo.duration - 2) {
-          startVideoTransition(firstVideo, secondVideo)
-          setCurrentVideo(1)
+        if (firstVideo && secondVideo && firstVideo.currentTime >= firstVideo.duration - 1.5) {
+          startVideoTransition(firstVideo, secondVideo, 1)
         }
       }
 
       // Monitorear el tiempo del segundo video
       const checkSecondVideoTime = () => {
-        if (firstVideo && secondVideo && secondVideo.currentTime >= secondVideo.duration - 2) {
-          startVideoTransition(secondVideo, firstVideo)
-          setCurrentVideo(0)
+        if (firstVideo && secondVideo && secondVideo.currentTime >= secondVideo.duration - 1.5) {
+          startVideoTransition(secondVideo, firstVideo, 0)
         }
       }
 
@@ -73,6 +93,8 @@ export default function Hero() {
       secondVideo.addEventListener('timeupdate', checkSecondVideoTime)
 
       return () => {
+        firstVideo.removeEventListener('canplay', handleCanPlay)
+        secondVideo.removeEventListener('canplay', handleCanPlay)
         firstVideo.removeEventListener('timeupdate', checkFirstVideoTime)
         secondVideo.removeEventListener('timeupdate', checkSecondVideoTime)
       }
@@ -88,8 +110,8 @@ export default function Hero() {
           muted 
           playsInline
           preload="auto"
-          className="absolute w-full h-full object-cover transition-opacity duration-2000"
-          style={{ opacity: 1 }}
+          className="absolute w-full h-full object-cover transition-opacity duration-1000"
+          style={{ opacity: videosLoaded ? 1 : 0 }}
         >
           <source src={videos[0].src} type="video/mp4" />
         </video>
@@ -99,7 +121,7 @@ export default function Hero() {
           muted 
           playsInline
           preload="auto"
-          className="absolute w-full h-full object-cover transition-opacity duration-2000"
+          className="absolute w-full h-full object-cover transition-opacity duration-1000"
           style={{ opacity: 0 }}
         >
           <source src={videos[1].src} type="video/mp4" />
@@ -122,12 +144,34 @@ export default function Hero() {
           />
         </div>
         
-        {/* Títulos - Responsive font sizes */}
+        {/* Títulos - Responsive font sizes with transition */}
         <div className="flex flex-col items-center space-y-0 sm:space-y-1 mb-4 sm:mb-6 md:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo" style={{ background: `linear-gradient(to right, #ff0054, #fbe40b)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '0.05em', padding: '0 0.5rem' }}>
+          <h2 
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-1000 ${
+              isTextTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+            style={{ 
+              background: `linear-gradient(to right, #ff0054, #fbe40b)`, 
+              WebkitBackgroundClip: 'text', 
+              WebkitTextFillColor: 'transparent', 
+              letterSpacing: '0.05em', 
+              padding: '0 0.5rem' 
+            }}
+          >
             {videos[currentVideo].titleLine1}
           </h2>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo" style={{ background: `linear-gradient(to right, #ff0054, #fbe40b)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '0.05em', padding: '0 0.5rem' }}>
+          <h2 
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-1000 ${
+              isTextTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+            style={{ 
+              background: `linear-gradient(to right, #ff0054, #fbe40b)`, 
+              WebkitBackgroundClip: 'text', 
+              WebkitTextFillColor: 'transparent', 
+              letterSpacing: '0.05em', 
+              padding: '0 0.5rem' 
+            }}
+          >
             {videos[currentVideo].titleLine2}
           </h2>
         </div>
