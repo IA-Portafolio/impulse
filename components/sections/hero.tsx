@@ -14,6 +14,7 @@ export default function Hero() {
   const firstVideoRef = useRef<HTMLVideoElement>(null)
   const secondVideoRef = useRef<HTMLVideoElement>(null)
   const isTransitioning = useRef(false)
+  const hasStartedPlaying = useRef(false)
 
   const videos = [
     {
@@ -42,39 +43,81 @@ export default function Hero() {
       // Transición suave del video actual al siguiente
       nextRef.style.opacity = '0'
       setTimeout(() => {
-        nextRef.style.opacity = '1'
+        nextRef.style.opacity = '0.98'
       }, 50)
 
       // Transición suave del video actual
       setTimeout(() => {
-        currentRef.style.opacity = '0'
+        currentRef.style.opacity = '0.02'
         setTimeout(() => {
           currentRef.pause()
           currentRef.currentTime = 0
           setCurrentVideo(nextIndex)
           setIsTextTransitioning(false)
           isTransitioning.current = false
-        }, 1000)
-      }, 1000)
+        }, 600)
+      }, 600)
+    }
+  }
+
+  const initializeVideos = async () => {
+    const firstVideo = firstVideoRef.current
+    const secondVideo = secondVideoRef.current
+
+    if (firstVideo && secondVideo && !hasStartedPlaying.current) {
+      try {
+        // Configurar eventos de carga
+        const handleFirstVideoCanPlay = () => {
+          if (!hasStartedPlaying.current) {
+            hasStartedPlaying.current = true
+            setVideosLoaded(true)
+            firstVideo.play().catch(console.error)
+          }
+        }
+
+        const handleSecondVideoCanPlay = () => {
+          if (firstVideo.readyState >= 3 && secondVideo.readyState >= 3) {
+            setVideosLoaded(true)
+          }
+        }
+
+        // Agregar event listeners
+        firstVideo.addEventListener('canplay', handleFirstVideoCanPlay, { once: true })
+        secondVideo.addEventListener('canplay', handleSecondVideoCanPlay, { once: true })
+
+        // Precargar videos
+        firstVideo.load()
+        secondVideo.load()
+
+        // Intentar reproducción inmediata
+        try {
+          await firstVideo.play()
+          hasStartedPlaying.current = true
+          setVideosLoaded(true)
+        } catch (error) {
+          console.error('Error al reproducir el video:', error)
+          // Si falla el autoplay, intentar reproducir con interacción del usuario
+          const handleUserInteraction = () => {
+            firstVideo.play().catch(console.error)
+            document.removeEventListener('click', handleUserInteraction)
+            document.removeEventListener('touchstart', handleUserInteraction)
+          }
+          document.addEventListener('click', handleUserInteraction)
+          document.addEventListener('touchstart', handleUserInteraction)
+        }
+      } catch (error) {
+        console.error('Error al inicializar videos:', error)
+      }
     }
   }
 
   useEffect(() => {
+    initializeVideos()
+
     const firstVideo = firstVideoRef.current
     const secondVideo = secondVideoRef.current
 
     if (firstVideo && secondVideo) {
-      // Esperar a que ambos videos estén cargados
-      const handleCanPlay = () => {
-        if (firstVideo.readyState >= 3 && secondVideo.readyState >= 3) {
-          setVideosLoaded(true)
-          firstVideo.play().catch(console.error)
-        }
-      }
-
-      firstVideo.addEventListener('canplay', handleCanPlay)
-      secondVideo.addEventListener('canplay', handleCanPlay)
-
       // Monitorear el tiempo del primer video
       const checkFirstVideoTime = () => {
         if (firstVideo && secondVideo && firstVideo.currentTime >= firstVideo.duration - 1.5) {
@@ -93,8 +136,6 @@ export default function Hero() {
       secondVideo.addEventListener('timeupdate', checkSecondVideoTime)
 
       return () => {
-        firstVideo.removeEventListener('canplay', handleCanPlay)
-        secondVideo.removeEventListener('canplay', handleCanPlay)
         firstVideo.removeEventListener('timeupdate', checkFirstVideoTime)
         secondVideo.removeEventListener('timeupdate', checkSecondVideoTime)
       }
@@ -109,8 +150,9 @@ export default function Hero() {
           ref={firstVideoRef}
           muted 
           playsInline
+          autoPlay
           preload="auto"
-          className="absolute w-full h-full object-cover transition-opacity duration-1000"
+          className="absolute w-full h-full object-cover transition-opacity duration-600"
           style={{ opacity: videosLoaded ? 1 : 0 }}
         >
           <source src={videos[0].src} type="video/mp4" />
@@ -121,7 +163,7 @@ export default function Hero() {
           muted 
           playsInline
           preload="auto"
-          className="absolute w-full h-full object-cover transition-opacity duration-1000"
+          className="absolute w-full h-full object-cover transition-opacity duration-600"
           style={{ opacity: 0 }}
         >
           <source src={videos[1].src} type="video/mp4" />
@@ -147,7 +189,7 @@ export default function Hero() {
         {/* Títulos - Responsive font sizes with transition */}
         <div className="flex flex-col items-center space-y-0 sm:space-y-1 mb-4 sm:mb-6 md:mb-8">
           <h2 
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-1000 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-600 ${
               isTextTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
             style={{ 
@@ -161,7 +203,7 @@ export default function Hero() {
             {videos[currentVideo].titleLine1}
           </h2>
           <h2 
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-1000 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-edo transition-opacity duration-600 ${
               isTextTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
             style={{ 
