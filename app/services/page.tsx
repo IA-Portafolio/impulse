@@ -171,27 +171,23 @@ export default function ServicesPage() {
               <div className="space-y-2 sm:space-y-4">
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">2 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$265</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$300</p>
                 </div>
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">3 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$350</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$375</p>
                 </div>
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">4 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$450</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$475</p>
                 </div>
               </div>
               
               {/* Columna derecha */}
               <div className="space-y-2 sm:space-y-4">
                 <div className="text-center space-y-1">
-                  <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">5 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$560</p>
-                </div>
-                <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">6 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$675</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$650</p>
                 </div>
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">8 Hours</p>
@@ -231,7 +227,7 @@ export default function ServicesPage() {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 sm:p-6">
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-bebas text-[#ff0054] mb-2 sm:mb-4">Special Service</h3>
         <p className="text-xl sm:text-2xl md:text-3xl text-[#fefefe] font-bebas mb-1 sm:mb-2">2 Hour Sunset Cruise w/Captain</p>
-        <p className="text-3xl sm:text-4xl md:text-5xl text-[#fbe40b] font-bebas">$365</p>
+        <p className="text-3xl sm:text-4xl md:text-5xl text-[#fbe40b] font-bebas">$399</p>
       </div>
     </div>
   </div>

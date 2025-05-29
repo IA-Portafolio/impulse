@@ -33,22 +33,20 @@ const services = [
       { 
         name: "Silverwave Pontoon",
         packages: [
-          { name: "2 Hours", price: 26500 },
-          { name: "3 Hours", price: 35000 },
-          { name: "4 Hours", price: 45000 },
-          { name: "5 Hours", price: 56000 },
-          { name: "6 Hours", price: 67500 },
+          { name: "2 Hours", price: 30000 },
+          { name: "3 Hours", price: 37500 },
+          { name: "4 Hours", price: 47500 },
+          { name: "6 Hours", price: 65000 },
           { name: "8 Hours", price: 85000 }
         ]
       },
       { 
         name: "Qwest Pontoon", 
         packages: [
-          { name: "2 Hours", price: 26500 },
-          { name: "3 Hours", price: 35000 },
-          { name: "4 Hours", price: 45000 },
-          { name: "5 Hours", price: 56000 },
-          { name: "6 Hours", price: 67500 },
+          { name: "2 Hours", price: 30000 },
+          { name: "3 Hours", price: 37500 },
+          { name: "4 Hours", price: 47500 },
+          { name: "6 Hours", price: 65000 },
           { name: "8 Hours", price: 85000 }
         ]
       }
@@ -265,10 +263,10 @@ interface BookingState {
   selectedOptionPrice: number;
   addOns: {
     floatingMat: number;
-    tube: number;
     inflatableToy: number;
     pet: boolean;
     captain: boolean;
+    grill: number;
   };
   // Nuevo campo para la oferta combinada
   combinedOffer: {
@@ -300,10 +298,10 @@ export default function BookNowPage() {
     selectedOptionPrice: 0,
     addOns: {
       floatingMat: 0,
-      tube: 0,
       inflatableToy: 0,
       pet: false,
-      captain: false
+      captain: false,
+      grill: 0
     },
     // Inicializar el nuevo campo
     combinedOffer: {
@@ -401,10 +399,10 @@ export default function BookNowPage() {
         selectedOptionPrice: 0,
         addOns: {
           floatingMat: 0,
-          tube: 0,
           inflatableToy: 0,
           pet: false,
-          captain: false
+          captain: false,
+          grill: 0
         },
         // Resetear oferta combinada
         combinedOffer: {
@@ -559,13 +557,12 @@ export default function BookNowPage() {
 
   // Calcular el subtotal de add-ons
   const calculateAddOnsTotal = () => {
-    // Calcular el costo del capitán basado en las horas del paquete
-    const captainCost = booking.addOns.captain ? getCaptainHourlyPrice() * 100 : 0; // Convertir a centavos
+    const captainCost = booking.addOns.captain ? getCaptainHourlyPrice() * 100 : 0;
     
     return (booking.addOns.floatingMat * 2500) + 
-           (booking.addOns.tube * 1000) + 
-           (booking.addOns.inflatableToy * 1000) + 
+           (booking.addOns.inflatableToy * 2500) + 
            (booking.addOns.pet ? 2500 : 0) +
+           (booking.addOns.grill * 4000) +
            captainCost;
   };
 
@@ -695,7 +692,8 @@ export default function BookNowPage() {
 
             {/* Service Cards */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-24 mb-24 pt-16">
-              {services.map((service) => (
+              {/* Primera fila: Pontoons, Bounce Houses, Foam Party */}
+              {services.filter(service => service.id !== "transport" && service.id !== "dj").map((service) => (
                 <Card
                   key={service.id}
                   className={cn(
@@ -704,7 +702,7 @@ export default function BookNowPage() {
                     "hover:shadow-xl hover:shadow-[#ff0054]/20 hover:-translate-y-2",
                     "rounded-xl p-4",
                     "transition-all duration-500",
-                    service.id === "transport" ? "md:col-span-6" : "md:col-span-4",
+                    "md:col-span-4",
                     booking.serviceId === service.id ? "ring-4 ring-[#ff0054]" : ""
                   )}
                   onClick={() => handleServiceSelection(service.id)}
@@ -739,6 +737,54 @@ export default function BookNowPage() {
                   </div>
                 </Card>
               ))}
+
+              {/* Segunda fila: Luxury Transport y DJ Services centrados */}
+              <div className="md:col-span-12 flex justify-center gap-8">
+                {services.filter(service => service.id === "transport" || service.id === "dj").map((service) => (
+                  <Card
+                    key={service.id}
+                    className={cn(
+                      "overflow-visible cursor-pointer group relative h-[450px]",
+                      "bg-gradient-to-r from-[#fbe40b] to-[#ff0054]",
+                      "hover:shadow-xl hover:shadow-[#ff0054]/20 hover:-translate-y-2",
+                      "rounded-xl p-4",
+                      "transition-all duration-500",
+                      service.id === "transport" ? "w-full md:w-[500px]" : "w-full md:w-[400px]",
+                      booking.serviceId === service.id ? "ring-4 ring-[#ff0054]" : ""
+                    )}
+                    onClick={() => handleServiceSelection(service.id)}
+                  >
+                    {/* Image Container */}
+                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-[80%] h-[300px]
+                            group-hover:scale-105 transition-transform duration-500">
+                      <div className="relative w-full h-full">
+                        {/* Decorative border */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#fbe40b] to-[#ff0054]
+                                rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-500"></div>
+                        {/* Image */}
+                        <div className="relative w-full h-full rounded-xl overflow-hidden">
+                          <Image
+                            src={service.image}
+                            alt={service.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="absolute bottom-8 left-0 right-0 text-center">
+                      <service.icon className="w-10 h-10 text-[#060404] mx-auto mb-3
+                                      group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
+                      <h3 className="text-3xl font-bebas text-[#060404] tracking-wider
+                             group-hover:scale-110 transition-transform duration-300">
+                        {service.name}
+                      </h3>
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -853,36 +899,6 @@ export default function BookNowPage() {
                                   </div>
                                 </div>
                                 
-                                {/* Tube */}
-                                <div className="flex items-center justify-between">
-                                  <div>
-                                    <p className="font-medium text-[#ff0054] text-lg">Tube</p>
-                                    <p className="text-sm text-[#060404]">2 units maximum</p>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="h-9 w-9 rounded-full p-0 border-2 border-[#ff0054] hover:bg-[#ff0054]/10 shadow-md"
-                                      onClick={() => handleAddOnChange('tube', Math.max(0, booking.addOns.tube - 1))}
-                                      disabled={booking.addOns.tube === 0}
-                                    >
-                                      <span className="text-lg font-bold">-</span>
-                                    </Button>
-                                    <span className="w-8 text-center text-[#060404] text-lg font-bold">{booking.addOns.tube}</span>
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="h-9 w-9 rounded-full p-0 border-2 border-[#ff0054] hover:bg-[#ff0054]/10 shadow-md"
-                                      onClick={() => handleAddOnChange('tube', Math.min(2, booking.addOns.tube + 1))}
-                                      disabled={booking.addOns.tube >= 2}
-                                    >
-                                      <span className="text-lg font-bold">+</span>
-                                    </Button>
-                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$10.00</span>
-                                  </div>
-                                </div>
-                                
                                 {/* Inflatable Toy */}
                                 <div className="flex items-center justify-between">
                                   <div>
@@ -909,15 +925,45 @@ export default function BookNowPage() {
                                     >
                                       <span className="text-lg font-bold">+</span>
                                     </Button>
-                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$10.00</span>
+                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$25.00</span>
+                                  </div>
+                                </div>
+
+                                {/* Grill */}
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <p className="font-medium text-[#ff0054] text-lg">Grill</p>
+                                    <p className="text-sm text-[#060404]">1 unit maximum</p>
+                                  </div>
+                                  <div className="flex items-center gap-3">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-9 w-9 rounded-full p-0 border-2 border-[#ff0054] hover:bg-[#ff0054]/10 shadow-md"
+                                      onClick={() => handleAddOnChange('grill', Math.max(0, booking.addOns.grill - 1))}
+                                      disabled={booking.addOns.grill === 0}
+                                    >
+                                      <span className="text-lg font-bold">-</span>
+                                    </Button>
+                                    <span className="w-8 text-center text-[#060404] text-lg font-bold">{booking.addOns.grill}</span>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-9 w-9 rounded-full p-0 border-2 border-[#ff0054] hover:bg-[#ff0054]/10 shadow-md"
+                                      onClick={() => handleAddOnChange('grill', Math.min(1, booking.addOns.grill + 1))}
+                                      disabled={booking.addOns.grill >= 1}
+                                    >
+                                      <span className="text-lg font-bold">+</span>
+                                    </Button>
+                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$40.00</span>
                                   </div>
                                 </div>
                                 
-                                {/* Captain - MODIFICADO */}
+                                {/* Captain */}
                                 <div className="flex items-center justify-between">
                                   <div>
                                     <p className="font-medium text-[#ff0054] text-lg">Captain</p>
-                                    <p className="text-sm text-[#060404]">50$ per hour</p>
+                                    <p className="text-sm text-[#060404]">$50 per hour</p>
                                   </div>
                                   <div className="flex items-center gap-4">
                                     <div className="flex items-center h-9">
@@ -936,7 +982,7 @@ export default function BookNowPage() {
                                     </span>
                                   </div>
                                 </div>
-                                
+
                                 {/* Bring a Pet */}
                                 <div className="flex items-center justify-between">
                                   <div>
@@ -960,15 +1006,20 @@ export default function BookNowPage() {
                                 </div>
                                 
                                 {/* Mostrar subtotal de add-ons */}
-                                {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain) && (
+                                {((booking.addOns.floatingMat > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain || booking.addOns.grill > 0) && 
+                                  ((booking.addOns.floatingMat * 25) + 
+                                   (booking.addOns.inflatableToy * 25) + 
+                                   (booking.addOns.pet ? 25 : 0) +
+                                   (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
+                                   (booking.addOns.grill * 40)) > 0) && (
                                   <div className="mt-6 pt-4 border-t-2 border-[#ff0054]/30 flex justify-between items-center">
                                     <p className="font-medium text-[#ff0054] text-lg">Add-ons Subtotal:</p>
                                     <p className="font-bold text-[#ff0054] text-xl">
                                       ${((booking.addOns.floatingMat * 25) + 
-                                         (booking.addOns.tube * 10) + 
-                                         (booking.addOns.inflatableToy * 10) + 
+                                         (booking.addOns.inflatableToy * 25) + 
                                          (booking.addOns.pet ? 25 : 0) +
-                                         (booking.addOns.captain ? getCaptainHourlyPrice() : 0)).toFixed(2)}
+                                         (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
+                                         (booking.addOns.grill * 40)).toFixed(2)}
                                     </p>
                                   </div>
                                 )}
@@ -1022,7 +1073,7 @@ export default function BookNowPage() {
                       <div className="flex items-center gap-3 mb-4">
                         <Sparkles className="h-6 w-6 text-[#fbe40b]" />
                         <h3 className="text-2xl font-bebas text-[#ff0054]">
-                        take our special offer 25$ off
+                        take our special offer $25 off
                         </h3>
                       </div>
 
@@ -1363,16 +1414,16 @@ export default function BookNowPage() {
                               <dd className="text-[#fefefe]">${(booking.addOns.floatingMat * 25).toFixed(2)}</dd>
                             </div>
                           )}
-                          {booking.addOns.tube > 0 && (
-                            <div className="flex justify-between ml-4">
-                              <dd className="text-[#fefefe]">Tube (x{booking.addOns.tube})</dd>
-                              <dd className="text-[#fefefe]">${(booking.addOns.tube * 10).toFixed(2)}</dd>
-                            </div>
-                          )}
                           {booking.addOns.inflatableToy > 0 && (
                             <div className="flex justify-between ml-4">
                               <dd className="text-[#fefefe]">Inflatable Toy (x{booking.addOns.inflatableToy})</dd>
-                              <dd className="text-[#fefefe]">${(booking.addOns.inflatableToy * 10).toFixed(2)}</dd>
+                              <dd className="text-[#fefefe]">${(booking.addOns.inflatableToy * 25).toFixed(2)}</dd>
+                            </div>
+                          )}
+                          {booking.addOns.grill > 0 && (
+                            <div className="flex justify-between ml-4">
+                              <dd className="text-[#fefefe]">Grill (x{booking.addOns.grill})</dd>
+                              <dd className="text-[#fefefe]">${(booking.addOns.grill * 40).toFixed(2)}</dd>
                             </div>
                           )}
                           {booking.addOns.captain && (
@@ -1389,12 +1440,21 @@ export default function BookNowPage() {
                           )}
                           
                           {/* Subtotal de Add-ons */}
-                          {(booking.addOns.floatingMat > 0 || booking.addOns.tube > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain) && (
-                            <div className="flex justify-between mt-2 pt-2 border-t border-[#fefefe]/10">
-                              <dt className="text-[#fbe40b]/70">Add-ons Subtotal:</dt>
-                              <dd className="text-[#fefefe]">${(bookingSummary.addOnsTotal/100).toFixed(2)}</dd>
-                            </div>
-                          )}
+                          {((booking.addOns.floatingMat > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain || booking.addOns.grill > 0) && 
+                            ((booking.addOns.floatingMat * 25) + 
+                             (booking.addOns.inflatableToy * 25) + 
+                             (booking.addOns.pet ? 25 : 0) +
+                             (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
+                             (booking.addOns.grill * 40)) > 0) && (
+                              <div className="flex justify-between mt-2 pt-2 border-t border-[#fefefe]/10">
+                                <dt className="text-[#fbe40b]/70">Add-ons Subtotal:</dt>
+                                <dd className="text-[#fefefe]">${((booking.addOns.floatingMat * 25) + 
+                                   (booking.addOns.inflatableToy * 25) + 
+                                   (booking.addOns.pet ? 25 : 0) +
+                                   (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
+                                   (booking.addOns.grill * 40)).toFixed(2)}</dd>
+                              </div>
+                            )}
                         </div>
                       )}
                       
