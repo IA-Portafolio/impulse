@@ -559,10 +559,10 @@ export default function BookNowPage() {
   const calculateAddOnsTotal = () => {
     const captainCost = booking.addOns.captain ? getCaptainHourlyPrice() * 100 : 0;
     
-    return (booking.addOns.floatingMat * 2500) + 
-           (booking.addOns.inflatableToy * 2500) + 
-           (booking.addOns.pet ? 2500 : 0) +
-           (booking.addOns.grill * 4000) +
+    return (booking.addOns.floatingMat * 50) + 
+           (booking.addOns.inflatableToy * 25) + 
+           (booking.addOns.pet ? 25 : 0) +
+           (booking.addOns.grill * 40) +
            captainCost;
   };
 
@@ -895,7 +895,7 @@ export default function BookNowPage() {
                                     >
                                       <span className="text-lg font-bold">+</span>
                                     </Button>
-                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$25.00</span>
+                                    <span className="ml-4 font-bold text-[#ff0054] text-lg">$50.00</span>
                                   </div>
                                 </div>
                                 
@@ -1007,7 +1007,7 @@ export default function BookNowPage() {
                                 
                                 {/* Mostrar subtotal de add-ons */}
                                 {((booking.addOns.floatingMat > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain || booking.addOns.grill > 0) && 
-                                  ((booking.addOns.floatingMat * 25) + 
+                                  ((booking.addOns.floatingMat * 50) + 
                                    (booking.addOns.inflatableToy * 25) + 
                                    (booking.addOns.pet ? 25 : 0) +
                                    (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
@@ -1015,7 +1015,7 @@ export default function BookNowPage() {
                                   <div className="mt-6 pt-4 border-t-2 border-[#ff0054]/30 flex justify-between items-center">
                                     <p className="font-medium text-[#ff0054] text-lg">Add-ons Subtotal:</p>
                                     <p className="font-bold text-[#ff0054] text-xl">
-                                      ${((booking.addOns.floatingMat * 25) + 
+                                      ${((booking.addOns.floatingMat * 50) + 
                                          (booking.addOns.inflatableToy * 25) + 
                                          (booking.addOns.pet ? 25 : 0) +
                                          (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
@@ -1411,7 +1411,7 @@ export default function BookNowPage() {
                           {booking.addOns.floatingMat > 0 && (
                             <div className="flex justify-between ml-4">
                               <dd className="text-[#fefefe]">Floating Mat (x{booking.addOns.floatingMat})</dd>
-                              <dd className="text-[#fefefe]">${(booking.addOns.floatingMat * 25).toFixed(2)}</dd>
+                              <dd className="text-[#fefefe]">${(booking.addOns.floatingMat * 50).toFixed(2)}</dd>
                             </div>
                           )}
                           {booking.addOns.inflatableToy > 0 && (
@@ -1441,14 +1441,14 @@ export default function BookNowPage() {
                           
                           {/* Subtotal de Add-ons */}
                           {((booking.addOns.floatingMat > 0 || booking.addOns.inflatableToy > 0 || booking.addOns.pet || booking.addOns.captain || booking.addOns.grill > 0) && 
-                            ((booking.addOns.floatingMat * 25) + 
+                            ((booking.addOns.floatingMat * 50) + 
                              (booking.addOns.inflatableToy * 25) + 
                              (booking.addOns.pet ? 25 : 0) +
                              (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
                              (booking.addOns.grill * 40)) > 0) && (
                               <div className="flex justify-between mt-2 pt-2 border-t border-[#fefefe]/10">
                                 <dt className="text-[#fbe40b]/70">Add-ons Subtotal:</dt>
-                                <dd className="text-[#fefefe]">${((booking.addOns.floatingMat * 25) + 
+                                <dd className="text-[#fefefe]">${((booking.addOns.floatingMat * 50) + 
                                    (booking.addOns.inflatableToy * 25) + 
                                    (booking.addOns.pet ? 25 : 0) +
                                    (booking.addOns.captain ? getCaptainHourlyPrice() : 0) +
