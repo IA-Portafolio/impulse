@@ -3,9 +3,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   // Configura las imágenes externas que serán optimizadas por Next.js
   images: {
     unoptimized: true,

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm i:*)",
+      "Bash(npx update-browserslist-db@latest:*)",
+      "Bash(npm uninstall:*)"
+    ]
+  }
+}
