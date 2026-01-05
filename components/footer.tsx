@@ -69,7 +69,6 @@ export default function Footer() {
                 <ul className="pl-3 space-y-0.5 mb-2">
                   <li>• <Link href="/gmc" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">GMC Yukon AT4 XL</Link></li>
                   <li>• <Link href="/suburban" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">Chevrolet Suburban</Link></li>
-                  <li>• <Link href="/bmw" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">BMW X7</Link></li>
                 </ul>
 
                 {/* Foam Party con sus subtítulos */}
