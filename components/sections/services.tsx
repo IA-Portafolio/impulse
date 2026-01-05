@@ -12,8 +12,7 @@ const LuxuryTransport = () => {
   // Estado para controlar el índice de la imagen actual para cada vehículo
   const [currentImageIndex, setCurrentImageIndex] = useState({
     yukon: 0,
-    suburban: 0,
-    bmw: 0
+    suburban: 0
   });
 
   // Arrays con las rutas de las imágenes para cada vehículo
@@ -31,13 +30,6 @@ const LuxuryTransport = () => {
     '/images/sub/lado2.png'
   ];
 
-  const bmwImages = [
-    '/images/bmw/1.jpg',
-    '/images/bmw/2.jpg',
-    '/images/bmw/3.jpg',
-    '/images/bmw/4.jpg'
-  ];
-
   // Efecto para cambiar automáticamente las imágenes
   useEffect(() => {
     const intervals = {
@@ -51,12 +43,6 @@ const LuxuryTransport = () => {
         setCurrentImageIndex(prev => ({
           ...prev,
           suburban: (prev.suburban + 1) % suburbanImages.length
-        }));
-      }, 3000),
-      bmw: setInterval(() => {
-        setCurrentImageIndex(prev => ({
-          ...prev,
-          bmw: (prev.bmw + 1) % bmwImages.length
         }));
       }, 3000)
     };
@@ -84,14 +70,6 @@ const LuxuryTransport = () => {
       { icon: Star, text: "Premium Sound System" },
       { icon: Shield, text: "Enhanced Safety Suite" },
       { icon: Activity, text: "Magnetic Ride Control" }
-    ],
-    bmw: [
-      { icon: Car, text: "Twin-Turbo 4.4L V8" },
-      { icon: Users, text: "max 4 passengers" },
-      { icon: Gauge, text: "523 Horsepower" },
-      { icon: Star, text: "BMW Live Cockpit Pro" },
-      { icon: Shield, text: "BMW Driving Assistant Pro" },
-      { icon: Activity, text: "xDrive All-Wheel Drive" }
     ]
   };
 
@@ -191,7 +169,6 @@ const LuxuryTransport = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {renderVehicleCard("GMC Yukon AT4 XL", yukonImages, currentImageIndex.yukon, features.yukon)}
         {renderVehicleCard("Chevrolet Suburban", suburbanImages, currentImageIndex.suburban, features.suburban)}
-        {renderVehicleCard("BMW X7", bmwImages, currentImageIndex.bmw, features.bmw)}
 
         <div className="text-center mt-12 md:mt-24 space-y-6 md:space-y-10">
           <h3 className="text-2xl sm:text-3xl md:text-5xl font-acumin text-[#fefefe]">
