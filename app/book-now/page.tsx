@@ -87,15 +87,8 @@ const services = [
           { name: "Trip to the airport", price: 14900 }
         ]
       },
-      { 
-        name: "Chevrolet Suburban", 
-        packages: [
-          { name: "2 hours minimum", price: 15000 },
-          { name: "Trip to the airport", price: 14900 }
-        ]
-      },
-      { 
-        name: "BMW X7", 
+      {
+        name: "Chevrolet Suburban",
         packages: [
           { name: "2 hours minimum", price: 15000 },
           { name: "Trip to the airport", price: 14900 }
@@ -124,7 +117,6 @@ const serviceImageMap: Record<string, string> = {
   "Foam Pit Package, Per hour": "/images/foampit.png",
   "GMC Yukon AT4 XL": "/images/Gmc/1.jpg",
   "Chevrolet Suburban": "/images/sub/lado2.png",
-  "BMW X7": "/images/bmw/1.jpg",
 }
 
 // Simulated booked dates
@@ -749,7 +741,7 @@ export default function BookNowPage() {
                       "hover:shadow-xl hover:shadow-[#ff0054]/20 hover:-translate-y-2",
                       "rounded-xl p-4",
                       "transition-all duration-500",
-                      service.id === "transport" ? "w-full md:w-[500px]" : "w-full md:w-[400px]",
+                      "w-full md:w-[400px]",
                       booking.serviceId === service.id ? "ring-4 ring-[#ff0054]" : ""
                     )}
                     onClick={() => handleServiceSelection(service.id)}

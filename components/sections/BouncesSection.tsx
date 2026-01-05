@@ -7,11 +7,21 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Sparkles, Volume2, VolumeX } from "lucide-react";
 
+interface Bubble {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  duration: number;
+  delay: number;
+}
+
 const BouncesSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [userPrefersMuted, setUserPrefersMuted] = useState(true);
+  const [bubbles, setBubbles] = useState<Bubble[]>([]);
 
   // Función para manejar cuando el usuario cambia el estado de silencio manualmente
   const toggleAudio = () => {
@@ -93,6 +103,19 @@ const BouncesSection = () => {
     };
   }, [userPrefersMuted]); // Dependencia en userPrefersMuted para reaccionar a cambios en la preferencia del usuario
 
+  // Generar burbujas solo en el cliente para evitar errores de hidratación
+  useEffect(() => {
+    const generatedBubbles = [...Array(20)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      width: Math.random() * 100 + 50,
+      height: Math.random() * 100 + 50,
+      duration: Math.random() * 10 + 5,
+      delay: Math.random() * 5,
+    }));
+    setBubbles(generatedBubbles);
+  }, []);
+
   return (
     <section 
       ref={sectionRef}
@@ -102,17 +125,17 @@ const BouncesSection = () => {
       {/* Elementos decorativos del fondo */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Burbujas animadas */}
-        {[...Array(20)].map((_, i) => (
+        {bubbles.map((bubble, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-gradient-to-r from-[#ff0054]/10 to-[#fbe40b]/10"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 100 + 50}px`,
-              height: `${Math.random() * 100 + 50}px`,
-              animation: `float ${Math.random() * 10 + 5}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 5}s`
+              left: `${bubble.left}%`,
+              top: `${bubble.top}%`,
+              width: `${bubble.width}px`,
+              height: `${bubble.height}px`,
+              animation: `float ${bubble.duration}s infinite ease-in-out`,
+              animationDelay: `${bubble.delay}s`
             }}
           />
         ))}

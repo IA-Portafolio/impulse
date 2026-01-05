@@ -279,18 +279,6 @@ export default function ServicesPage() {
           </Button>
         </div>
 
-        {/* Botón BMW */}
-        <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
-          <Button 
-            className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
-            asChild
-          >
-            <Link href="/bmw">
-              BMW X7
-              <MousePointerClick className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-            </Link>
-          </Button>
-        </div>
       </div>
       <p className="text-base sm:text-lg md:text-xl text-[#fefefe]/80">
         Our premium SUVs redefine luxury transportation. With their spacious interiors, 
