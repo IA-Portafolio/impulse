@@ -74,28 +74,32 @@ const services = [
       { name: "Foam Pit Package, Per hour", price: 31500 }
     ]
   },
-  {
-    id: "transport",
-    name: "Luxury Transport",
-    icon: Car,
-    image: "/images/car-services.png",
-    options: [
-      { 
-        name: "GMC Yukon AT4 XL", 
-        packages: [
-          { name: "2 hours minimum", price: 15000 },
-          { name: "Trip to the airport", price: 14900 }
-        ]
-      },
-      {
-        name: "Chevrolet Suburban",
-        packages: [
-          { name: "2 hours minimum", price: 15000 },
-          { name: "Trip to the airport", price: 14900 }
-        ]
-      }
-    ]
-  },
+  // ============================================================================
+  // LUXURY TRANSPORT - CÓDIGO COMENTADO PARA USO FUTURO
+  // ============================================================================
+  // {
+  //   id: "transport",
+  //   name: "Luxury Transport",
+  //   icon: Car,
+  //   image: "/images/car-services.png",
+  //   options: [
+  //     {
+  //       name: "GMC Yukon AT4 XL",
+  //       packages: [
+  //         { name: "2 hours minimum", price: 15000 },
+  //         { name: "Trip to the airport", price: 14900 }
+  //       ]
+  //     },
+  //     {
+  //       name: "Chevrolet Suburban",
+  //       packages: [
+  //         { name: "2 hours minimum", price: 15000 },
+  //         { name: "Trip to the airport", price: 14900 }
+  //       ]
+  //     }
+  //   ]
+  // },
+  // ============================================================================
   {
     id: "dj",
     name: "DJ Services",
@@ -115,8 +119,9 @@ const serviceImageMap: Record<string, string> = {
   "Color Foam Party Package, Per hour": "/images/foamcolor.png",
   "Glow in the Dark Foam Party Package, Per hour": "/images/fotofoamnoche.jpg",
   "Foam Pit Package, Per hour": "/images/foampit.png",
-  "GMC Yukon AT4 XL": "/images/Gmc/1.jpg",
-  "Chevrolet Suburban": "/images/sub/lado2.png",
+  // LUXURY TRANSPORT - COMENTADO
+  // "GMC Yukon AT4 XL": "/images/Gmc/1.jpg",
+  // "Chevrolet Suburban": "/images/sub/lado2.png",
 }
 
 // Simulated booked dates

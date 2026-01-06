@@ -39,16 +39,11 @@ export default function Footer() {
             <h3 className="text-lg sm:text-xl font-bebas mb-2 sm:mb-3 text-[#ff0054] text-center md:text-left">Services</h3>
             
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-0">
-              {/* Columna 1: Pontoon Rentals, Bounce Houses y DJ Services */}
+              {/* Columna 1: Pontoon Rentals y DJ Services */}
               <div className="flex-1 pr-0 sm:pr-1 text-xs sm:text-sm border-b sm:border-b-0 sm:border-r border-[#ff0054]/10 pb-2 sm:pb-0">
                 <Link href="/barco" className="block hover:text-opacity-80 transition-colors duration-300">
                   <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
                     Pontoon Rentals
-                  </span>
-                </Link>
-                <Link href="/bounce" className="block hover:text-opacity-80 transition-colors duration-300 mt-2">
-                  <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
-                    Bounce Houses Package
                   </span>
                 </Link>
                 <Link href="/contact" className="block hover:text-opacity-80 transition-colors duration-300 mt-2">
@@ -58,9 +53,11 @@ export default function Footer() {
                 </Link>
               </div>
               
-              {/* Columna 2: Car Services y Foam Party (con subtítulos) */}
+              {/* Columna 2: Bounce Houses y Foam Party (con subtítulos) */}
               <div className="flex-1 pl-0 sm:pl-2 text-xs sm:text-sm space-y-2">
-                {/* Car Services con sus subtítulos */}
+                {/* ============================================================================
+                    CAR SERVICES - CÓDIGO COMENTADO PARA USO FUTURO
+                    ============================================================================
                 <Link href="/services" className="block font-semibold hover:text-opacity-80 transition-colors duration-300">
                   <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
                     Car Services
@@ -69,6 +66,18 @@ export default function Footer() {
                 <ul className="pl-3 space-y-0.5 mb-2">
                   <li>• <Link href="/gmc" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">GMC Yukon AT4 XL</Link></li>
                   <li>• <Link href="/suburban" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">Chevrolet Suburban</Link></li>
+                </ul>
+                ============================================================================ */}
+
+                {/* Bounce Houses con sus subtítulos */}
+                <Link href="/bounce" className="block font-semibold hover:text-opacity-80 transition-colors duration-300">
+                  <span className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] text-transparent bg-clip-text">
+                    Bounce Houses
+                  </span>
+                </Link>
+                <ul className="pl-3 space-y-0.5 mb-2">
+                  <li>• <Link href="/bounce" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">Ice Pops Mega Front Loader</Link></li>
+                  <li>• <Link href="/bounce" className="text-[#060404] hover:text-[#ff0054] transition-colors duration-300">Ninja Bounce House</Link></li>
                 </ul>
 
                 {/* Foam Party con sus subtítulos */}

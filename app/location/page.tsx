@@ -209,14 +209,16 @@ export default function LocationPage() {
 
                 <div className="space-y-2">
                   <Label className="text-[#fefefe] font-semibold text-sm md:text-base">Service of Interest</Label>
-                  <select 
+                  <select
+                    defaultValue=""
                     className="w-full bg-[#fefefe] border-2 border-[#fbe40b]/20 text-[#060404] rounded-md px-3 py-2 focus:outline-none focus:border-[#fbe40b] hover:border-[#fbe40b]/50 transition-colors duration-200"
                   >
-                    <option value="" disabled selected className="text-[#060404]/40">Select a service</option>
+                    <option value="" disabled className="text-[#060404]/40">Select a service</option>
                     <option value="boats">Pontoons</option>
                     <option value="bounce">Bounce Houses</option>
-                    <option value="cars">Luxury Transport</option>
+                    {/* <option value="cars">Luxury Transport</option> - COMENTADO */}
                     <option value="foam">Foam Party</option>
+                    <option value="dj">DJ Services</option>
                   </select>
                 </div>
 
