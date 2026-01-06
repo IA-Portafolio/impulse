@@ -232,7 +232,10 @@ export default function ServicesPage() {
     </div>
   </div>
 </Card>
- {/* Car Services */}
+
+{/* ============================================================================
+    CAR SERVICES - CÓDIGO COMENTADO PARA USO FUTURO
+    ============================================================================
 <Card id="car-services" className="bg-[#fefefe]/5 backdrop-blur-sm border-[#ff0054]/20 hover:border-[#ff0054] transition-all duration-300 max-w-[85vw] mx-auto rounded-2xl">
   <div className="grid md:grid-cols-2 gap-6 md:gap-8 p-4 sm:p-6 md:p-8">
     <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden">
@@ -253,9 +256,8 @@ export default function ServicesPage() {
         </span>
       </h2>
       <div className="grid grid-cols-1 gap-3 md:gap-4">
-        {/* Botón GMC */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
-          <Button 
+          <Button
             className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
@@ -265,10 +267,8 @@ export default function ServicesPage() {
             </Link>
           </Button>
         </div>
-
-        {/* Botón Suburban */}
         <div className="relative overflow-hidden rounded-lg p-[2px] bg-gradient-to-r from-[#ff0054] to-[#fbe40b] transition-all duration-300 shadow-[0_0_15px_rgba(255,0,84,0.5)]">
-          <Button 
+          <Button
             className="w-full bg-[#060404] hover:bg-[#060404]/90 text-[#fefefe] text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-6 md:py-8 transition-transform duration-300 font-bebas relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#ff0054] before:to-[#fbe40b] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:-z-10 flex items-center justify-center gap-2 sm:gap-3"
             asChild
           >
@@ -278,25 +278,21 @@ export default function ServicesPage() {
             </Link>
           </Button>
         </div>
-
       </div>
       <p className="text-base sm:text-lg md:text-xl text-[#fefefe]/80">
-        Our premium SUVs redefine luxury transportation. With their spacious interiors, 
-        state-of-the-art entertainment systems, and comfortable seating, they are the ideal 
-        choice for a variety of occasions. Whether it's a special event, a corporate gathering, 
+        Our premium SUVs redefine luxury transportation. With their spacious interiors,
+        state-of-the-art entertainment systems, and comfortable seating, they are the ideal
+        choice for a variety of occasions. Whether it's a special event, a corporate gathering,
         an airport transfer, or a luxurious travel experience, our SUVs are designed to meet your needs.
       </p>
-      
-      {/* Nuevos botones de precios con fondo blanco y texto negro */}
       <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-6 pt-4 sm:pt-6">
-        <Button 
+        <Button
           className="bg-[#fefefe] border-3 border-[#ff0054] text-[#060404] hover:bg-[#fefefe]/90 text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
           disabled
         >
           Price per hour $75
         </Button>
-        
-        <Button 
+        <Button
           className="bg-[#fefefe] border-3 border-[#fbe40b] text-[#060404] hover:bg-[#fefefe]/90 text-lg sm:text-xl md:text-2xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 font-bebas transition-all duration-300 shadow-md min-w-[180px] sm:min-w-[200px] md:min-w-[220px]"
           disabled
         >
@@ -306,6 +302,7 @@ export default function ServicesPage() {
     </div>
   </div>
 </Card>
+============================================================================ */}
 
          {/* Bounce Houses */}
 <Card className="bg-[#fefefe]/5 backdrop-blur-sm border-[#ff0054]/20 hover:border-[#ff0054] transition-all duration-300">
