@@ -5,7 +5,6 @@ const nextConfig = {
   output: 'standalone',
   // Configura las imágenes externas que serán optimizadas por Next.js
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,12 +12,6 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'image-storage.example.com',
-        port: '',
-        pathname: '/**',
-      }
     ]
   }
 };

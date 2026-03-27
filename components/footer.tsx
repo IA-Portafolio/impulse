@@ -1,7 +1,7 @@
 // components/footer.tsx
 
 import Link from "next/link"
-import { Bot, Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react"
+import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react"
 import Image from "next/image"
 
 export default function Footer() {

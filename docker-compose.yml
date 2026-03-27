@@ -1,0 +1,42 @@
+services:
+  impulse-db:
+    image: postgres:16-alpine
+    container_name: impulse-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: impulse
+      POSTGRES_USER: impulse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - impulse-internal
+
+  impulse:
+    build: .
+    container_name: impulse-app
+    restart: unless-stopped
+    depends_on:
+      - impulse-db
+    env_file: .env
+    environment:
+      - HOSTNAME=0.0.0.0
+    networks:
+      - impulse-internal
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.impulse.rule=Host(`impulsexperience.com`) || Host(`www.impulsexperience.com`)"
+      - "traefik.http.routers.impulse.entrypoints=websecure"
+      - "traefik.http.routers.impulse.tls.certresolver=letsencrypt"
+      - "traefik.http.services.impulse.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.impulse-www.redirectregex.regex=^https://www\\.impulsexperience\\.com/(.*)"
+      - "traefik.http.middlewares.impulse-www.redirectregex.replacement=https://impulsexperience.com/$${1}"
+      - "traefik.http.middlewares.impulse-www.redirectregex.permanent=true"
+      - "traefik.http.routers.impulse.middlewares=impulse-www"
+
+networks:
+  impulse-internal:
+  traefik-public:
+    external: true

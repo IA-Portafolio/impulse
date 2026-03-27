@@ -1,7 +1,7 @@
 // app/book-now/page.tsx
 "use client"
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,11 +14,10 @@ import {
   CardDescription,
   CardFooter
 } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, Ship, Castle, Car, Music, CloudRain, Check, CreditCard, Calendar, Phone, Mail, Sparkles } from "lucide-react"
+import { ChevronLeft, ChevronRight, Ship, Castle, Music, CloudRain, Check, CreditCard, Calendar, Phone, Mail, Sparkles } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import BookingSteps from "@/components/custom/booking-steps"
-import StripePaymentForm from "@/components/custom/stripe-payment-form"
 import StripeCheckout from '@/components/custom/stripe-payment-integration'
 import { useRouter } from 'next/navigation'
 
@@ -652,6 +651,18 @@ export default function BookNowPage() {
 
   // For the final confirmation step
   const bookingSummary = getBookingSummary();
+
+  // Stabilize bookingData reference to prevent repeated PaymentIntent creation
+  const stripeBookingData = useMemo(() => ({
+    amount: bookingSummary.totalPrice,
+    serviceId: booking.serviceId,
+    serviceName: booking.serviceName,
+    optionName: booking.selectedOption + (booking.selectedPackage ? ` - ${booking.selectedPackage}` : '') +
+      (booking.combinedOffer.enabled ? ` + ${booking.combinedOffer.selectedOption}` : ''),
+    date: booking.date as Date,
+    customerInfo: booking.personalInfo,
+    addOns: booking.addOns
+  }), [bookingSummary.totalPrice, booking.serviceId, booking.serviceName, booking.selectedOption, booking.selectedPackage, booking.combinedOffer.enabled, booking.combinedOffer.selectedOption, booking.date, booking.personalInfo, booking.addOns]);
 
   // Obtener el servicio complementario para oferta
   const complementaryService = getComplementaryService();
@@ -1486,16 +1497,7 @@ export default function BookNowPage() {
                 {/* Stripe Payment Form */}
                 <div>
                     <StripeCheckout
-                      bookingData={{
-                        amount: bookingSummary.totalPrice,
-                        serviceId: booking.serviceId,
-                        serviceName: booking.serviceName,
-                        optionName: booking.selectedOption + (booking.selectedPackage ? ` - ${booking.selectedPackage}` : '') +
-                          (booking.combinedOffer.enabled ? ` + ${booking.combinedOffer.selectedOption}` : ''),
-                        date: booking.date as Date,
-                        customerInfo: booking.personalInfo,
-                        addOns: booking.addOns
-                      }}
+                      bookingData={stripeBookingData}
                       onSuccess={handlePaymentSuccess}
                       onCancel={goToPreviousStep}
                     />

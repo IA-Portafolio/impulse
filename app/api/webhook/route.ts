@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     } catch (err: any) {
         console.error(`Error al verificar webhook: ${err.message}`);
         return NextResponse.json(
-            { error: `Error de firma del webhook: ${err.message}` },
+            { error: 'Error de verificación del webhook.' },
             { status: 400 }
         );
     }

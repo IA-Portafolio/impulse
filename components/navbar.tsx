@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, MapPin, ShoppingCart } from "lucide-react"
+import { Menu, X, MapPin } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"

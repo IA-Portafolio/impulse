@@ -1,17 +1,13 @@
-// components/custom/chat-flotante.tsx
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, X, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { FlowiseClient } from 'flowise-sdk';
-import { v4 as uuidv4 } from 'uuid'; // Asegúrate de tener uuid instalado: npm install uuid
 
-// Interfaz para los mensajes
 interface Message {
     id: string;
     content: string;
@@ -19,296 +15,125 @@ interface Message {
     timestamp: Date;
 }
 
-// URL del servidor Flowise
-const FLOWISE_URL = 'https://modelos.iaportafolio.com';
-const CHATFLOW_ID = '67d18b37-97a1-415c-8de7-a6845ed0d367';
-
-// Clave para el almacenamiento local
 const CHAT_HISTORY_KEY = 'impulse_chat_history';
-const SESSION_ID_KEY = 'impulse_chat_session_id';
+
+const INITIAL_MESSAGE: Message = {
+    id: '1',
+    content: 'Hello! I am the virtual assistant for Impulse Rentals. How can I help you today?',
+    sender: 'bot',
+    timestamp: new Date(),
+};
 
 const ChatFlotante: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: '1',
-            content: 'Hello! I am the virtual assistant for Impulse Rentals. How can I help you today?',
-            sender: 'bot',
-            timestamp: new Date()
-        }
-    ]);
+    const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
-    const [sessionId, setSessionId] = useState<string>('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const client = new FlowiseClient({ baseUrl: FLOWISE_URL });
 
-    // Inicializar o recuperar el sessionId cuando se monta el componente
+    // Load saved messages on mount
     useEffect(() => {
-        // Cargar mensajes previos del almacenamiento local
-        const loadedMessages = loadMessages();
-        if (loadedMessages.length > 0) {
-            setMessages(loadedMessages);
-        }
-
-        // Recuperar o crear sessionId
-        const storedSessionId = localStorage.getItem(SESSION_ID_KEY);
-        if (storedSessionId) {
-            setSessionId(storedSessionId);
-        } else {
-            const newSessionId = uuidv4();
-            setSessionId(newSessionId);
-            localStorage.setItem(SESSION_ID_KEY, newSessionId);
-        }
+        try {
+            const saved = localStorage.getItem(CHAT_HISTORY_KEY);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed.length > 0) {
+                    setMessages(parsed.map((m: any) => ({ ...m, timestamp: new Date(m.timestamp) })));
+                }
+            }
+        } catch { /* ignore */ }
     }, []);
 
-    // Autofocus en el input cuando se abre el chat
     useEffect(() => {
-        if (isOpen && inputRef.current) {
-            inputRef.current.focus();
-        }
+        if (isOpen && inputRef.current) inputRef.current.focus();
     }, [isOpen]);
 
-    // Scroll al último mensaje
     useEffect(() => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Guardar mensajes en localStorage
-        saveMessages(messages);
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        try {
+            localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages.slice(-50)));
+        } catch { /* ignore */ }
     }, [messages]);
 
-    // Función para guardar mensajes en localStorage
-    const saveMessages = (messages: Message[]): void => {
-        try {
-            // Solo guardar los últimos 50 mensajes para no sobrecargar localStorage
-            const messagesToSave = messages.slice(-50);
-            localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messagesToSave));
-        } catch (error) {
-            console.error('Error al guardar mensajes en localStorage:', error);
-        }
-    };
-
-    // Función para cargar mensajes desde localStorage
-    const loadMessages = (): Message[] => {
-        try {
-            const savedMessages = localStorage.getItem(CHAT_HISTORY_KEY);
-            if (savedMessages) {
-                const parsedMessages = JSON.parse(savedMessages);
-                // Convertir strings de fechas a objetos Date
-                return parsedMessages.map((msg: any) => ({
-                    ...msg,
-                    timestamp: new Date(msg.timestamp)
-                }));
-            }
-        } catch (error) {
-            console.error('Error al cargar mensajes desde localStorage:', error);
-        }
-
-        // Mensaje inicial por defecto si no hay historial
-        return [
-            {
-                id: '1',
-                content: 'Hello! I am the virtual assistant for Impulse Rentals. How can I help you today?',
-                sender: 'bot',
-                timestamp: new Date()
-            }
-        ];
-    };
-
-    const toggleChat = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && inputValue.trim() !== '') {
-            e.preventDefault();
-            sendMessage();
-        }
-    };
+    const formatTime = (date: Date) =>
+        date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     const sendMessage = async () => {
-        if (inputValue.trim() === '') return;
+        const text = inputValue.trim();
+        if (!text || isTyping) return;
 
-        // Añadir mensaje del usuario
-        const userMessage: Message = {
+        const userMsg: Message = {
             id: Date.now().toString(),
-            content: inputValue,
+            content: text,
             sender: 'user',
-            timestamp: new Date()
+            timestamp: new Date(),
         };
 
-        setMessages(prevMessages => [...prevMessages, userMessage]);
+        const updatedMessages = [...messages, userMsg];
+        setMessages(updatedMessages);
         setInputValue('');
         setIsTyping(true);
 
+        const botMsgId = (Date.now() + 1).toString();
+
+        // Add empty bot message for streaming
+        setMessages(prev => [...prev, { id: botMsgId, content: '', sender: 'bot', timestamp: new Date() }]);
+
         try {
-            // Llamada a la API usando el SDK de Flowise con sessionId
-            const prediction = await client.createPrediction({
-                chatflowId: CHATFLOW_ID,
-                question: userMessage.content,
-                streaming: true,
-                overrideConfig: {
-                    sessionId: sessionId, // Usar el sessionId guardado
-                }
+            // Send conversation history (last 20 messages for context)
+            const history = updatedMessages.slice(-20).map(m => ({
+                sender: m.sender,
+                content: m.content,
+            }));
+
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: history }),
             });
 
-            let botResponse = '';
-            let botMessageId = Date.now().toString();
+            if (!response.ok) throw new Error('API error');
 
-            // Para manejar streaming, un enfoque común es añadir primero un mensaje vacío
-            // y luego irlo actualizando
-            setMessages(prevMessages => [
-                ...prevMessages,
-                {
-                    id: botMessageId,
-                    content: '',
-                    sender: 'bot',
-                    timestamp: new Date()
-                }
-            ]);
+            const reader = response.body!.getReader();
+            const decoder = new TextDecoder();
+            let fullText = '';
 
-            // Procesar la respuesta de streaming
-            for await (const chunk of prediction) {
-                if (chunk.event === 'token') {
-                    botResponse += chunk.data || '';
-
-                    // Actualizar el mensaje del bot con la información parcial
-                    setMessages(prevMessages =>
-                        prevMessages.map(msg =>
-                            msg.id === botMessageId
-                                ? { ...msg, content: botResponse }
-                                : msg
-                        )
-                    );
-                }
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                fullText += decoder.decode(value, { stream: true });
+                const currentText = fullText;
+                setMessages(prev =>
+                    prev.map(m => m.id === botMsgId ? { ...m, content: currentText } : m)
+                );
             }
 
-            // Si no se recibe ninguna respuesta en streaming
-            if (!botResponse) {
-                throw new Error('No se recibió ninguna respuesta del asistente');
-            }
+            if (!fullText) throw new Error('Empty response');
         } catch (error) {
-            console.error('Error al enviar mensaje:', error);
-
-            // Mensaje de error en caso de fallo
-            setMessages(prevMessages => [
-                ...prevMessages,
-                {
-                    id: Date.now().toString(),
-                    content: 'Lo siento, ha ocurrido un error. Por favor, intenta nuevamente más tarde.',
-                    sender: 'bot',
-                    timestamp: new Date()
-                }
-            ]);
-        } finally {
-            setIsTyping(false);
-        }
-    };
-
-    // Alternativa para cuando no hay streaming disponible
-    const sendMessageWithoutStreaming = async () => {
-        if (inputValue.trim() === '') return;
-
-        // Añadir mensaje del usuario
-        const userMessage: Message = {
-            id: Date.now().toString(),
-            content: inputValue,
-            sender: 'user',
-            timestamp: new Date()
-        };
-
-        setMessages(prevMessages => [...prevMessages, userMessage]);
-        setInputValue('');
-        setIsTyping(true);
-
-        try {
-            // Llamada directa a la API si no usamos el SDK
-            const response = await fetch(
-                `${FLOWISE_URL}/api/v1/prediction/${CHATFLOW_ID}`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        question: userMessage.content,
-                        overrideConfig: {
-                            sessionId: sessionId, // Usar el sessionId guardado
-                        }
-                    }),
-                }
+            console.error('Chat error:', error);
+            setMessages(prev =>
+                prev.map(m =>
+                    m.id === botMsgId
+                        ? { ...m, content: 'Sorry, an error occurred. Please try again later.' }
+                        : m
+                )
             );
-
-            if (!response.ok) {
-                throw new Error('Error en la respuesta de la API');
-            }
-
-            const data = await response.json();
-
-            // Añadir mensaje del bot
-            setMessages(prevMessages => [
-                ...prevMessages,
-                {
-                    id: Date.now().toString(),
-                    content: data.answer || 'No se recibió una respuesta clara.',
-                    sender: 'bot',
-                    timestamp: new Date()
-                }
-            ]);
-        } catch (error) {
-            console.error('Error al enviar mensaje:', error);
-
-            // Mensaje de error en caso de fallo
-            setMessages(prevMessages => [
-                ...prevMessages,
-                {
-                    id: Date.now().toString(),
-                    content: 'Lo siento, ha ocurrido un error. Por favor, intenta nuevamente más tarde.',
-                    sender: 'bot',
-                    timestamp: new Date()
-                }
-            ]);
         } finally {
             setIsTyping(false);
         }
     };
 
-    // Formatear la hora del mensaje
-    const formatTime = (date: Date) => {
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
-
-    // Función para reiniciar la conversación
     const resetConversation = () => {
-        // Crear nuevo sessionId
-        const newSessionId = uuidv4();
-        setSessionId(newSessionId);
-        localStorage.setItem(SESSION_ID_KEY, newSessionId);
-
-        // Reiniciar mensajes
-        const initialMessage: Message = {
-            id: Date.now().toString(),
-            content: 'Hello! I am the virtual assistant for Impulse Rentals. How can I help you today?',
-            sender: 'bot' as const,
-            timestamp: new Date()
-        };
-
-        setMessages([initialMessage]);
-        saveMessages([initialMessage]);
+        const initial = { ...INITIAL_MESSAGE, id: Date.now().toString(), timestamp: new Date() };
+        setMessages([initial]);
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify([initial]));
     };
 
     return (
         <div className="fixed bottom-6 right-6 z-50">
-            {/* Botón de chat flotante */}
             <Button
-                onClick={toggleChat}
+                onClick={() => setIsOpen(!isOpen)}
                 className={cn(
                     "h-14 w-14 rounded-full p-0",
                     "bg-gradient-to-r from-[#ff0054] to-[#fbe40b]",
@@ -317,57 +142,40 @@ const ChatFlotante: React.FC = () => {
                 )}
                 aria-label="Chat de atención al cliente"
             >
-                {isOpen ? (
-                    <X className="h-6 w-6 text-[#fefefe]" />
-                ) : (
-                    <MessageCircle className="h-6 w-6 text-[#fefefe]" />
-                )}
+                {isOpen ? <X className="h-6 w-6 text-[#fefefe]" /> : <MessageCircle className="h-6 w-6 text-[#fefefe]" />}
             </Button>
 
-            {/* Ventana de chat */}
             {isOpen && (
                 <Card className="absolute bottom-16 right-0 w-[350px] sm:w-[400px] shadow-xl border border-[#ff0054]/30 overflow-hidden">
-                    {/* Cabecera */}
+                    {/* Header */}
                     <div className="bg-gradient-to-r from-[#ff0054] to-[#fbe40b] p-4 text-[#fefefe] font-bebas flex items-center gap-2">
                         <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                            <Image
-                                src="/logo-sin-texto.png"
-                                alt="Impulse Rentals Logo"
-                                fill
-                                className="object-contain"
-                            />
+                            <Image src="/logo-sin-texto.png" alt="Impulse Rentals Logo" fill className="object-contain" />
                         </div>
                         <div className="flex-1">
                             <h3 className="text-xl font-bold">Impulse Assistant</h3>
                             <p className="text-sm opacity-90">We are here to help you</p>
                         </div>
                         <div className="flex gap-2">
-                            {/* Botón para reiniciar la conversación */}
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 onClick={resetConversation}
                                 className="h-8 w-8 rounded-full hover:bg-[#fefefe]/10"
-                                title="Reiniciar conversación"
+                                title="Reset conversation"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                                    <path d="M3 3v5h5"></path>
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                    <path d="M3 3v5h5" />
                                 </svg>
                             </Button>
-                            {/* Botón para cerrar el chat */}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={toggleChat}
-                                className="h-8 w-8 rounded-full hover:bg-[#fefefe]/10"
-                            >
+                            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 rounded-full hover:bg-[#fefefe]/10">
                                 <X className="h-4 w-4 text-[#fefefe]" />
                             </Button>
                         </div>
                     </div>
 
-                    {/* Cuerpo del chat */}
+                    {/* Messages */}
                     <div className="h-[400px] overflow-y-auto p-4 bg-[#fefefe]/5">
                         <div className="space-y-4">
                             {messages.map((message) => (
@@ -381,14 +189,10 @@ const ChatFlotante: React.FC = () => {
                                     )}
                                 >
                                     <div className="flex items-center gap-2 mb-1">
-                                        {message.sender === "bot" ? (
-                                            <Bot className="h-4 w-4" />
-                                        ) : (
-                                            <User className="h-4 w-4" />
-                                        )}
+                                        {message.sender === "bot" ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
                                         <span className="text-xs opacity-75">
-                      {message.sender === "bot" ? "Asistente" : "Tú"} • {formatTime(message.timestamp)}
-                    </span>
+                                            {message.sender === "bot" ? "Asistente" : "Tú"} • {formatTime(message.timestamp)}
+                                        </span>
                                     </div>
                                     <p className="text-sm">{message.content}</p>
                                 </div>
@@ -396,9 +200,9 @@ const ChatFlotante: React.FC = () => {
                             {isTyping && (
                                 <div className="flex max-w-[80%] rounded-lg p-3 mr-auto bg-[#fefefe] text-[#060404]">
                                     <div className="flex space-x-1">
-                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '250ms' }}></div>
-                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '500ms' }}></div>
+                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '250ms' }} />
+                                        <div className="w-2 h-2 bg-[#ff0054] rounded-full animate-bounce" style={{ animationDelay: '500ms' }} />
                                     </div>
                                 </div>
                             )}
@@ -406,20 +210,20 @@ const ChatFlotante: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Footer con input para escribir */}
+                    {/* Input */}
                     <CardFooter className="p-2 bg-[#fefefe] border-t border-[#ff0054]/20">
                         <div className="flex w-full gap-2">
                             <Input
                                 ref={inputRef}
                                 placeholder="Write your message..."
                                 value={inputValue}
-                                onChange={handleInputChange}
-                                onKeyDown={handleKeyDown}
+                                onChange={e => setInputValue(e.target.value)}
+                                onKeyDown={e => { if (e.key === 'Enter' && inputValue.trim()) { e.preventDefault(); sendMessage(); } }}
                                 className="flex-1 border-[#ff0054]/30 focus-visible:ring-[#ff0054]"
                             />
                             <Button
                                 onClick={sendMessage}
-                                disabled={inputValue.trim() === '' || isTyping}
+                                disabled={!inputValue.trim() || isTyping}
                                 className="bg-[#ff0054] hover:bg-[#ff0054]/90 text-[#fefefe]"
                                 size="icon"
                             >

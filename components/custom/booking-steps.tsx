@@ -1,6 +1,6 @@
 // components/custom/booking-steps.tsx
 import React from 'react';
-import { CheckCircle, Circle, Clock } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface StepProps {

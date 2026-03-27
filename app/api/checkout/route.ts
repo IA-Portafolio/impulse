@@ -33,15 +33,16 @@ export async function POST(req: Request) {
         }
 
         // Crear o recuperar el cliente en Stripe
-        const customerSearch = await stripe.customers.search({
-            query: `email:'${email}'`,
+        const customerList = await stripe.customers.list({
+            email,
+            limit: 1,
         });
 
         let customerId: string;
 
-        if (customerSearch.data.length > 0) {
+        if (customerList.data.length > 0) {
             // Usar el cliente existente
-            customerId = customerSearch.data[0].id;
+            customerId = customerList.data[0].id;
         } else {
             // Crear un nuevo cliente
             const customer = await stripe.customers.create({
@@ -103,7 +104,7 @@ export async function POST(req: Request) {
     } catch (error: any) {
         console.error('Error al crear el intent de pago:', error);
         return NextResponse.json(
-            { error: 'Error al procesar el pago: ' + error.message },
+            { error: 'Error al procesar el pago. Intente de nuevo.' },
             { status: 500 }
         );
     }

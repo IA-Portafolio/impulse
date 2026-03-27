@@ -1,13 +1,8 @@
 // app/api/wear/orders/route.ts
 import { NextResponse } from 'next/server';
 
-// Almacenar variables de entorno seguras para producción
-const API_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzN2Q0YmQzMDM1ZmUxMWU5YTgwM2FiN2VlYjNjY2M5NyIsImp0aSI6IjIxMDFiZmUyYzU2NjhlNjgxMTNjMmFhNGY0YjkzMjFkN2E4ZGI0ZTMwZmMzYzVmNTczZWU1N2NkYzU2YTFlMGRiM2IxOWQ5NDllYmE4NmFiIiwiaWF0IjoxNzQwMjY5MDU1Ljk5MDQ1NCwibmJmIjoxNzQwMjY5MDU1Ljk5MDQ1NywiZXhwIjoxNzcxODA1MDU1Ljk3NDc5Miwic3ViIjoiMTA5MTMzMzAiLCJzY29wZXMiOlsic2hvcHMubWFuYWdlIiwic2hvcHMucmVhZCIsImNhdGFsb2cucmVhZCIsIm9yZGVycy5yZWFkIiwib3JkZXJzLndyaXRlIiwicHJvZHVjdHMucmVhZCIsInByb2R1Y3RzLndyaXRlIiwid2ViaG9va3MucmVhZCIsIndlYmhvb2tzLndyaXRlIiwidXBsb2Fkcy5yZWFkIiwidXBsb2Fkcy53cml0ZSIsInByaW50X3Byb3ZpZGVycy5yZWFkIiwidXNlci5pbmZvIl19.AVooeLzDiGre0JFGufX7PPjYif9LGg8DWHQH9Y_7n6kYNLbwaHONCiDYxuXrivTU3DTJU81u7cDNtLDNDP0';
-const SHOP_ID = '5981437';
-
-// En un entorno real, obtendrías estos valores de variables de entorno:
-// const API_TOKEN = process.env.PRINTIFY_API_TOKEN;
-// const SHOP_ID = process.env.PRINTIFY_SHOP_ID;
+const API_TOKEN = process.env.PRINTIFY_API_TOKEN;
+const SHOP_ID = process.env.PRINTIFY_SHOP_ID;
 
 interface LineItem {
     product_id: string;
@@ -109,12 +104,12 @@ export async function POST(req: Request) {
                 );
             } else if (response.status === 422) {
                 return NextResponse.json(
-                    { error: 'Datos de la orden inválidos para Printify', details: errorData },
+                    { error: 'Datos de la orden inválidos.' },
                     { status: 422 }
                 );
             } else {
                 return NextResponse.json(
-                    { error: 'Error en el servidor de Printify', details: errorData },
+                    { error: 'Error del servicio de impresión. Intente de nuevo.' },
                     { status: response.status }
                 );
             }
@@ -132,7 +127,7 @@ export async function POST(req: Request) {
         console.error('Error al procesar la orden:', error);
 
         return NextResponse.json(
-            { error: 'Error al procesar la orden', message: error.message },
+            { error: 'Error al procesar la orden. Intente de nuevo.' },
             { status: 500 }
         );
     }
@@ -165,7 +160,7 @@ export async function GET(req: Request) {
         if (!response.ok) {
             const errorData = await response.json();
             return NextResponse.json(
-                { error: 'Error al obtener la información de la orden', details: errorData },
+                { error: 'Error al obtener la información de la orden.' },
                 { status: response.status }
             );
         }
@@ -176,7 +171,7 @@ export async function GET(req: Request) {
         console.error('Error al obtener la información de la orden:', error);
 
         return NextResponse.json(
-            { error: 'Error al obtener la información de la orden', message: error.message },
+            { error: 'Error al obtener la información de la orden. Intente de nuevo.' },
             { status: 500 }
         );
     }
