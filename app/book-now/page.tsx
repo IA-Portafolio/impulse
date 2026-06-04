@@ -36,18 +36,18 @@ const services = [
           { name: "2 Hours", price: 30000 },
           { name: "3 Hours", price: 37500 },
           { name: "4 Hours", price: 47500 },
-          { name: "6 Hours", price: 65000 },
-          { name: "8 Hours", price: 85000 }
+          { name: "6 Hours", price: 67500 },
+          { name: "8 Hours", price: 87500 }
         ]
       },
       { 
-        name: "Qwest Pontoon", 
+        name: "Qwest Pontoon",
         packages: [
           { name: "2 Hours", price: 30000 },
           { name: "3 Hours", price: 37500 },
           { name: "4 Hours", price: 47500 },
-          { name: "6 Hours", price: 65000 },
-          { name: "8 Hours", price: 85000 }
+          { name: "6 Hours", price: 67500 },
+          { name: "8 Hours", price: 87500 }
         ]
       }
     ]

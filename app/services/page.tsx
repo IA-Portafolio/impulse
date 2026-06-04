@@ -187,11 +187,11 @@ export default function ServicesPage() {
               <div className="space-y-2 sm:space-y-4">
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">6 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$650</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$675</p>
                 </div>
                 <div className="text-center space-y-1">
                   <p className="text-base sm:text-lg md:text-xl text-[#fefefe] font-bebas">8 Hours</p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$850</p>
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#fbe40b] font-bebas">$875</p>
                 </div>
               </div>
             </div>
