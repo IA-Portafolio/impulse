@@ -1,0 +1,21 @@
+# Base de datos en vivo (bind-mount de postgres, no legible y no debe ir al build)
+data
+
+# Dependencias y artefactos: se regeneran dentro del build
+node_modules
+.next
+
+# Control de versiones y metadatos
+.git
+.gitignore
+
+# NOTA: .env SÍ entra al contexto de build a propósito.
+# Next.js incrusta las vars NEXT_PUBLIC_* (ej. la publishable key de Stripe)
+# en tiempo de build, y lib/stripe.ts necesita STRIPE_SECRET_KEY al importarse.
+# La imagen se construye localmente en el servidor y no se publica a ningún registro.
+# Los entornos locales por-usuario sí se excluyen:
+.env*.local
+
+# Logs y temporales
+*.log
+npm-debug.log*
